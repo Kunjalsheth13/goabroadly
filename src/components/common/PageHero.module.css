@@ -1,0 +1,40 @@
+.hero {
+  position: relative;
+  padding: 8rem 0 4rem;
+  background: var(--color-surface);
+  overflow: hidden;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--color-gradient-primary);
+  opacity: 0.05;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  max-width: 720px;
+}
+
+.title {
+  font-size: clamp(2rem, 5vw, 3rem);
+  margin-bottom: 1rem;
+}
+
+.subtitle {
+  font-size: 1.15rem;
+  color: var(--color-text-secondary);
+  line-height: 1.7;
+}
+
+.centered {
+  text-align: center;
+  margin: 0 auto;
+}
+
+.centered .subtitle {
+  margin: 0 auto;
+}

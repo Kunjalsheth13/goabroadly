@@ -1,0 +1,335 @@
+.hero {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  padding: clamp(6rem, 12vw, 8rem) 0 clamp(3rem, 6vw, 5rem);
+  overflow: hidden;
+  background: var(--color-primary);
+}
+
+.bgGradient {
+  position: absolute;
+  inset: 0;
+  background: var(--color-gradient-hero), var(--color-primary);
+}
+
+.gridOverlay {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.03) 1px,
+      transparent 1px
+    ),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+  pointer-events: none;
+}
+
+.inner {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: center;
+}
+
+.content {
+  max-width: 580px;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 1rem;
+  background: var(--color-glass);
+  border: 1px solid var(--color-glass-border);
+  border-radius: 999px;
+  font-family: var(--font-body), sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--color-accent-light);
+  margin-bottom: 1.75rem;
+  backdrop-filter: blur(12px);
+}
+
+.title {
+  font-size: clamp(2.5rem, 5.5vw, 4.25rem);
+  color: var(--color-on-dark);
+  line-height: 1.05;
+  margin-bottom: 1.5rem;
+}
+
+.titleAccent {
+  display: block;
+  background: var(--color-gradient-gold);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-style: italic;
+}
+
+.subtitle {
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  color: var(--color-on-dark-muted);
+  line-height: 1.75;
+  margin-bottom: 2.25rem;
+  max-width: 520px;
+}
+
+.actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.primaryBtn {
+  gap: 0.5rem;
+}
+
+.trustBadges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 2.5rem;
+}
+
+.trustBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--color-on-dark-muted);
+  border: 1px solid var(--color-glass-border);
+  border-radius: 999px;
+  background: var(--color-glass);
+}
+
+.stats {
+  display: flex;
+  gap: clamp(1.5rem, 4vw, 2.5rem);
+  padding-top: 2rem;
+  border-top: 1px solid var(--color-glass-border);
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.statValue {
+  font-family: var(--font-heading), serif;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 700;
+  color: var(--color-on-dark);
+  background: var(--color-gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.statLabel {
+  font-size: 0.8rem;
+  color: var(--color-on-dark-muted);
+  letter-spacing: 0.02em;
+}
+
+.visual {
+  position: relative;
+  min-height: 420px;
+}
+
+.canvasWrap {
+  width: 100%;
+  height: clamp(320px, 50vh, 520px);
+  pointer-events: none;
+}
+
+.floatingCards {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.visaCard {
+  position: absolute;
+  right: 0;
+  top: 5%;
+  padding: 1rem 1.15rem;
+  background: var(--color-glass);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--color-glass-border);
+  border-radius: var(--radius-md);
+  color: var(--color-on-dark);
+  min-width: 180px;
+  box-shadow: var(--shadow-lg);
+  animation: float 4s ease-in-out infinite;
+}
+
+.visaCard:nth-child(2) {
+  right: 10%;
+  top: 38%;
+  animation-delay: 0.8s;
+}
+
+.visaCard:nth-child(3) {
+  right: -5%;
+  top: 68%;
+  animation-delay: 1.6s;
+}
+
+.visaHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  color: var(--color-accent-light);
+}
+
+.visaStatus {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-success);
+}
+
+.visaLabel {
+  font-size: 0.7rem;
+  opacity: 0.65;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.25rem;
+}
+
+.visaCountry {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.offerCard {
+  position: absolute;
+  left: -5%;
+  bottom: 8%;
+  padding: 1rem 1.25rem;
+  background: linear-gradient(
+    135deg,
+    rgba(201, 169, 98, 0.15),
+    rgba(59, 91, 219, 0.15)
+  );
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--color-glass-border);
+  border-radius: var(--radius-md);
+  color: var(--color-on-dark);
+  min-width: 200px;
+  box-shadow: var(--shadow-glow);
+  animation: float 5s ease-in-out infinite;
+  animation-delay: 1s;
+}
+
+.offerCard:nth-child(5) {
+  left: 15%;
+  bottom: 55%;
+  animation-delay: 2s;
+}
+
+.offerStatus {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-accent);
+  margin-bottom: 0.5rem;
+}
+
+.offerUniversity {
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.offerProgram {
+  font-size: 0.8rem;
+  color: var(--color-on-dark-muted);
+}
+
+.scrollHint {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+}
+
+.scrollHint span {
+  display: block;
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, var(--color-accent-light), transparent);
+}
+
+@media (max-width: 1024px) {
+  .inner {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .content {
+    max-width: 100%;
+  }
+
+  .subtitle {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .actions,
+  .trustBadges,
+  .stats {
+    justify-content: center;
+  }
+
+  .visual {
+    min-height: 360px;
+    order: -1;
+  }
+
+  .canvasWrap {
+    opacity: 0.7;
+    height: 280px;
+  }
+
+  .floatingCards {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .stats {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .actions a {
+    width: 100%;
+    justify-content: center;
+  }
+}
