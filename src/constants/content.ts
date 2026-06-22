@@ -119,7 +119,7 @@ export const destinations = [
     universities: "120+",
     description: "Affordable tuition and excellent post-study work opportunities.",
     image:
-      "https://images.unsplash.com/photo-1517935709615-584497381f68?w=800&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=800&q=80&auto=format&fit=crop",
   },
   {
     country: "Australia",
@@ -127,7 +127,7 @@ export const destinations = [
     universities: "100+",
     description: "High quality of life with diverse, industry-connected programs.",
     image:
-      "https://images.unsplash.com/photo-1523482580695-8e1094362eb4?w=800&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?w=800&q=80&auto=format&fit=crop",
   },
   {
     country: "United States",
@@ -143,7 +143,7 @@ export const destinations = [
     universities: "80+",
     description: "Low or no tuition fees at world-renowned public universities.",
     image:
-      "https://images.unsplash.com/photo-1467269204591-9625361f59a4?w=800&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1494526585095-c41746248156?w=800&q=80&auto=format&fit=crophttps://images.unsplash.com/photo-1528728329032-2972f65dfb3f?w=800&q=80&auto=format&fit=crop",
   },
 ] as const;
 
