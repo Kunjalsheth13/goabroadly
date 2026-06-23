@@ -3,14 +3,9 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
-}
-
-enum InquiryStatus {
-  NEW
-  CONTACTED
-  CLOSED
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
 model Admin {
@@ -29,7 +24,7 @@ model ContactInquiry {
   phone             String
   interestedCountry String
   serviceType       String
-  message           String        @db.Text
+  message           String
   status            InquiryStatus @default(NEW)
   createdAt         DateTime      @default(now())
 
@@ -44,7 +39,7 @@ model ConsultationBooking {
   phone         String
   preferredDate DateTime
   preferredTime String
-  notes         String?  @db.Text
+  notes         String?
   createdAt     DateTime @default(now())
 
   @@index([createdAt])
@@ -61,19 +56,25 @@ model BlogPost {
   id             String       @id @default(cuid())
   title          String
   slug           String       @unique
-  excerpt        String       @db.Text
-  content        String       @db.Text
+  excerpt        String
+  content        String
   featuredImage  String?
   seoTitle       String?
-  seoDescription String?      @db.Text
+  seoDescription String?
   published      Boolean      @default(false)
   createdAt      DateTime     @default(now())
   updatedAt      DateTime     @updatedAt
   categoryId     String
-  category       BlogCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)
   authorId       String
   author         Admin        @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  category       BlogCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)
 
   @@index([published])
   @@index([createdAt])
+}
+
+enum InquiryStatus {
+  NEW
+  CONTACTED
+  CLOSED
 }
