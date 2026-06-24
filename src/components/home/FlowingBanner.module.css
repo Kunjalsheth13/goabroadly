@@ -1,0 +1,73 @@
+.banner {
+  width: 100%;
+  overflow: hidden;
+  background: linear-gradient(90deg, rgba(149, 213, 178, 0.25) 0%, rgba(109, 197, 214, 0.2) 100%);
+  border-top: 1px solid rgba(149, 213, 178, 0.3);
+  border-bottom: 1px solid rgba(149, 213, 178, 0.3);
+  padding: 0.625rem 0;
+}
+
+.track {
+  display: flex;
+  width: max-content;
+  animation: scroll 30s linear infinite;
+}
+
+.track:hover {
+  animation-play-state: paused;
+}
+
+.item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0 2rem;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-primary);
+  white-space: nowrap;
+}
+
+.planeIcon {
+  color: var(--color-primary);
+  animation: fly 2s ease-in-out infinite;
+}
+
+.dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  opacity: 0.4;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes fly {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-10deg);
+  }
+  50% {
+    transform: translateY(-3px) rotate(5deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .track {
+    animation: none;
+  }
+
+  .planeIcon {
+    animation: none;
+  }
+}

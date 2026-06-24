@@ -7,7 +7,16 @@ import { faqItems } from "@/constants/content";
 import FadeIn from "@/components/animations/FadeIn";
 import styles from "./FAQSection.module.css";
 
-export default function FAQSection() {
+type FAQItem = { question: string; answer: string };
+
+type FAQSectionProps = {
+  items?: FAQItem[];
+  title?: string;
+};
+
+export default function FAQSection({ items, title }: FAQSectionProps = {}) {
+  const faqs = items ?? faqItems;
+  const sectionTitle = title ?? "Frequently Asked Questions";
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   const toggle = (index: number) => {
@@ -22,7 +31,7 @@ export default function FAQSection() {
             <div className={styles.header}>
               <span className="sectionEyebrow">Got Questions?</span>
               <h2 id="faq-title" className="sectionTitle">
-                Frequently Asked Questions
+                {sectionTitle}
               </h2>
               <p className={styles.headerText}>
                 Everything you need to know about studying abroad with GoAbroadly.
@@ -36,7 +45,7 @@ export default function FAQSection() {
           </FadeIn>
 
           <div className={styles.list} role="list">
-            {faqItems.map((item, i) => {
+            {faqs.map((item, i) => {
               const isOpen = openIndex === i;
 
               return (

@@ -2,10 +2,10 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
-import { ArrowRight, MapPin } from "lucide-react";
 import Link from "next/link";
-import { destinations } from "@/constants/content";
+import { motion } from "framer-motion";
+import { ArrowRight, GraduationCap, Clock, DollarSign } from "lucide-react";
+import { studyAbroadData } from "@/constants/study-abroad-data";
 import FadeIn from "@/components/animations/FadeIn";
 import styles from "./DestinationsSection.module.css";
 
@@ -29,39 +29,46 @@ export default function DestinationsSection() {
         </FadeIn>
 
         <div className={styles.grid}>
-          {destinations.map((dest, i) => (
-            <FadeIn key={dest.country} delay={i * 0.08}>
+          {studyAbroadData.map((dest, i) => (
+            <FadeIn key={dest.slug} delay={i * 0.06}>
               <motion.article
                 className={styles.card}
                 onMouseEnter={() => setHoveredIndex(i)}
                 onMouseLeave={() => setHoveredIndex(null)}
-                whileHover={{ scale: 1.02 }}
+                whileHover={{ y: -6 }}
                 transition={{ duration: 0.35 }}
               >
                 <div className={styles.imageWrap}>
                   <Image
-                    src={dest.image}
-                    alt={`${dest.country} — international students and campus life`}
+                    src={dest.heroImage}
+                    alt={`Study in ${dest.country}`}
                     fill
                     sizes="(max-width: 568px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     className={styles.image}
-                    placeholder="blur"
-                    blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAn/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBEQCEAwEPwAB//9k="
+                    loading="lazy"
                   />
                   <div className={styles.overlay} />
+                  <h3 className={styles.countryOverlay}>{dest.country}</h3>
                 </div>
 
                 <div className={styles.content}>
-                  <span className={styles.code}>{dest.code}</span>
-                  <h3 className={styles.country}>{dest.country}</h3>
-                  <p className={styles.universities}>
-                    <MapPin size={14} aria-hidden="true" />
-                    {dest.universities} Partner Universities
-                  </p>
-                  <p className={styles.description}>{dest.description}</p>
+                  <div className={styles.stats}>
+                    <span className={styles.stat}>
+                      <GraduationCap size={14} aria-hidden="true" />
+                      {dest.topUniversities.length}+ Universities
+                    </span>
+                    <span className={styles.stat}>
+                      <Clock size={14} aria-hidden="true" />
+                      1-2 Year Programs
+                    </span>
+                    <span className={styles.stat}>
+                      <DollarSign size={14} aria-hidden="true" />
+                      Scholarships Available
+                    </span>
+                  </div>
 
                   <Link
-                    href="/countries"
+                    href={`/study-abroad/${dest.slug}`}
                     className={`${styles.exploreLink} ${hoveredIndex === i ? styles.exploreLinkVisible : ""}`}
                   >
                     Explore {dest.country}

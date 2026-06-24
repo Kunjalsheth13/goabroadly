@@ -8,6 +8,7 @@ import styles from "./AdminSidebar.module.css";
 const links = [
   { href: "/admin/dashboard", label: "Dashboard", icon: "📊" },
   { href: "/admin/blogs", label: "Blogs", icon: "📝" },
+  { href: "/admin/testimonials", label: "Testimonials", icon: "💬" },
   { href: "/admin/contacts", label: "Contacts", icon: "📬" },
   { href: "/admin/bookings", label: "Bookings", icon: "📅" },
   { href: "/admin/settings", label: "Settings", icon: "⚙️" },

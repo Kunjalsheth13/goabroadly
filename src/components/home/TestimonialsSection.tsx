@@ -1,20 +1,64 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, ChevronRight, Quote, Star } from "lucide-react";
-import { testimonials } from "@/constants/content";
+import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
+import { testimonials as fallbackTestimonials } from "@/constants/content";
 import FadeIn from "@/components/animations/FadeIn";
 import styles from "./TestimonialsSection.module.css";
 
+type TestimonialItem = {
+  id?: string;
+  name: string;
+  country: string;
+  university?: string;
+  program?: string;
+  testimonial?: string;
+  quote?: string;
+  image: string;
+};
+
 export default function TestimonialsSection() {
+  const [items, setItems] = useState<TestimonialItem[]>(
+    fallbackTestimonials.map((t) => ({
+      name: t.name,
+      country: t.country,
+      university: t.program,
+      quote: t.quote,
+      image: t.image,
+    }))
+  );
   const [active, setActive] = useState(0);
 
-  const prev = () => setActive((a) => (a === 0 ? testimonials.length - 1 : a - 1));
-  const next = () => setActive((a) => (a === testimonials.length - 1 ? 0 : a + 1));
+  useEffect(() => {
+    fetch("/api/testimonials")
+      .then((r) => r.json())
+      .then((data) => {
+        if (Array.isArray(data) && data.length > 0) {
+          setItems(
+            data.map((t: TestimonialItem) => ({
+              id: t.id,
+              name: t.name,
+              country: t.country,
+              university: t.university,
+              quote: t.testimonial,
+              image: t.image || "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200&q=80&auto=format&fit=crop",
+            }))
+          );
+        }
+      })
+      .catch(() => {});
+  }, []);
 
-  const current = testimonials[active];
+  const prev = () => setActive((a) => (a === 0 ? items.length - 1 : a - 1));
+  const next = () => setActive((a) => (a === items.length - 1 ? 0 : a + 1));
+
+  const current = items[active];
+  if (!current) return null;
+
+  const quoteText = current.quote || current.testimonial || "";
+  const programText = current.university || current.program || "";
 
   return (
     <section className={styles.section} aria-labelledby="testimonials-title">
@@ -27,8 +71,7 @@ export default function TestimonialsSection() {
               Student Testimonials
             </h2>
             <p className="sectionSubtitle">
-              Real stories from students who transformed their futures with
-              GoAbroadly.
+              Real stories from students who transformed their futures with GoAbroadly.
             </p>
           </div>
         </FadeIn>
@@ -40,21 +83,15 @@ export default function TestimonialsSection() {
 
               <AnimatePresence mode="wait">
                 <motion.div
-                  key={active}
+                  key={current.id || current.name}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
                   transition={{ duration: 0.4 }}
                   className={styles.slideContent}
                 >
-                  <div className={styles.stars} aria-label={`${current.rating} out of 5 stars`}>
-                    {Array.from({ length: current.rating }).map((_, i) => (
-                      <Star key={i} size={16} fill="currentColor" aria-hidden="true" />
-                    ))}
-                  </div>
-
                   <blockquote className={styles.quote}>
-                    &ldquo;{current.quote}&rdquo;
+                    &ldquo;{quoteText}&rdquo;
                   </blockquote>
 
                   <footer className={styles.author}>
@@ -69,7 +106,7 @@ export default function TestimonialsSection() {
                     </div>
                     <div>
                       <cite className={styles.name}>{current.name}</cite>
-                      <p className={styles.program}>{current.program}</p>
+                      <p className={styles.program}>{programText}</p>
                       <p className={styles.country}>{current.country}</p>
                     </div>
                   </footer>
@@ -77,18 +114,13 @@ export default function TestimonialsSection() {
               </AnimatePresence>
 
               <div className={styles.controls}>
-                <button
-                  type="button"
-                  className={styles.navBtn}
-                  onClick={prev}
-                  aria-label="Previous testimonial"
-                >
+                <button type="button" className={styles.navBtn} onClick={prev} aria-label="Previous testimonial">
                   <ChevronLeft size={20} />
                 </button>
                 <div className={styles.dots} role="tablist" aria-label="Testimonial navigation">
-                  {testimonials.map((t, i) => (
+                  {items.map((t, i) => (
                     <button
-                      key={t.name}
+                      key={t.id || t.name}
                       type="button"
                       role="tab"
                       className={`${styles.dot} ${i === active ? styles.dotActive : ""}`}
@@ -98,21 +130,16 @@ export default function TestimonialsSection() {
                     />
                   ))}
                 </div>
-                <button
-                  type="button"
-                  className={styles.navBtn}
-                  onClick={next}
-                  aria-label="Next testimonial"
-                >
+                <button type="button" className={styles.navBtn} onClick={next} aria-label="Next testimonial">
                   <ChevronRight size={20} />
                 </button>
               </div>
             </div>
 
             <div className={styles.sideCards} aria-hidden="true">
-              {testimonials.map((t, i) => (
+              {items.map((t, i) => (
                 <button
-                  key={t.name}
+                  key={t.id || t.name}
                   type="button"
                   className={`${styles.sideCard} ${i === active ? styles.sideCardActive : ""}`}
                   onClick={() => setActive(i)}

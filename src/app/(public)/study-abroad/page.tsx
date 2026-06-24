@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
+import Link from "next/link";
+import { studyAbroadData } from "@/constants/study-abroad-data";
 import PageHero from "@/components/common/PageHero";
 import FadeIn from "@/components/animations/FadeIn";
-import Button from "@/components/common/Button";
+import CTASection from "@/components/home/CTASection";
+import styles from "../listing.module.css";
 
 export const metadata: Metadata = {
   title: "Study Abroad",
@@ -17,17 +20,21 @@ export default function StudyAbroadPage() {
         centered
       />
       <section className="section">
-        <div className="container" style={{ maxWidth: 800, textAlign: "center" }}>
-          <FadeIn>
-            <p style={{ fontSize: "1.1rem", lineHeight: 1.8, color: "var(--color-text-secondary)", marginBottom: "2rem" }}>
-              Studying abroad opens doors to exceptional academic programs, cultural experiences,
-              and global career opportunities. Our counselors help you identify the right country,
-              university, and program based on your academic profile, budget, and career goals.
-            </p>
-            <Button href="/free-assessment" size="lg">Get Free Assessment</Button>
-          </FadeIn>
+        <div className="container">
+          <div className={styles.grid}>
+            {studyAbroadData.map((dest) => (
+              <FadeIn key={dest.slug}>
+                <Link href={`/study-abroad/${dest.slug}`} className={styles.card}>
+                  <h3 className={styles.cardTitle}>Study in {dest.country}</h3>
+                  <p className={styles.cardDesc}>{dest.heroSubtitle.slice(0, 120)}...</p>
+                  <span className={styles.cardLink}>Explore guide</span>
+                </Link>
+              </FadeIn>
+            ))}
+          </div>
         </div>
       </section>
+      <CTASection />
     </>
   );
 }

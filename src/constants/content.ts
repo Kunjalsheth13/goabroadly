@@ -13,12 +13,14 @@ export const footerLinks = {
   company: [
     { href: "/about", label: "About Us" },
     { href: "/services", label: "Services" },
+    { href: "/visa-types", label: "Visa Types" },
     { href: "/contact", label: "Contact" },
   ],
   resources: [
     { href: "/free-assessment", label: "Free Assessment" },
     { href: "/blog", label: "Blog" },
     { href: "/countries", label: "Destinations" },
+    { href: "/study-abroad", label: "Study Abroad" },
   ],
   legal: [
     { href: "/privacy-policy", label: "Privacy Policy" },

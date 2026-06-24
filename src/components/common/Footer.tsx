@@ -55,7 +55,7 @@ export default function Footer() {
 
         <div className={styles.bottom}>
           <span>&copy; {new Date().getFullYear()} GoAbroadly. All rights reserved.</span>
-          <span>Your Gateway to Global Education</span>
+          <span>{siteConfig.tagline}</span>
         </div>
       </div>
     </footer>

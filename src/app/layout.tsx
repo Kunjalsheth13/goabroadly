@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import Providers from "@/components/common/Providers";
+import ThemeInjector from "@/components/common/ThemeInjector";
 import "@/styles/globals.css";
 import { siteConfig } from "@/constants/site";
 
@@ -55,6 +56,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
       <head>
+        <ThemeInjector />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}

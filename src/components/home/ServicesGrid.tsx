@@ -2,30 +2,38 @@
 
 import { motion } from "framer-motion";
 import {
-  GraduationCap,
-  Plane,
-  Award,
-  BookOpen,
-  Building2,
   Globe,
+  GraduationCap,
+  PenLine,
+  Banknote,
+  Award,
+  ClipboardList,
+  Mic,
+  FileText,
+  ShieldCheck,
   ArrowUpRight,
   type LucideIcon,
 } from "lucide-react";
 import Link from "next/link";
-import { services } from "@/constants/content";
+import { servicesData } from "@/constants/services-data";
 import FadeIn from "@/components/animations/FadeIn";
 import styles from "./ServicesGrid.module.css";
 
 const iconMap: Record<string, LucideIcon> = {
-  GraduationCap,
-  Plane,
-  Award,
-  BookOpen,
-  Building2,
-  Globe,
+  "visa-consultation": Globe,
+  "university-admission": GraduationCap,
+  "sop-writing": PenLine,
+  "education-loan-assistance": Banknote,
+  "scholarship-guidance": Award,
+  "application-assistance": ClipboardList,
+  "interview-preparation": Mic,
+  "visa-filing": FileText,
+  "document-verification": ShieldCheck,
 };
 
 export default function ServicesGrid() {
+  const featured = servicesData.slice(0, 6);
+
   return (
     <section className={styles.section} aria-labelledby="services-title">
       <div className="container">
@@ -43,11 +51,11 @@ export default function ServicesGrid() {
         </FadeIn>
 
         <div className={styles.grid}>
-          {services.map((service, i) => {
-            const Icon = iconMap[service.icon] ?? GraduationCap;
+          {featured.map((service, i) => {
+            const Icon = iconMap[service.slug] ?? Globe;
 
             return (
-              <FadeIn key={service.title} delay={i * 0.07}>
+              <FadeIn key={service.slug} delay={i * 0.07}>
                 <motion.article
                   className={styles.card}
                   whileHover={{ y: -8 }}
@@ -57,8 +65,8 @@ export default function ServicesGrid() {
                     <Icon size={24} aria-hidden="true" />
                   </div>
                   <h3 className={styles.title}>{service.title}</h3>
-                  <p className={styles.description}>{service.description}</p>
-                  <Link href="/services" className={styles.link}>
+                  <p className={styles.description}>{service.overview.slice(0, 120)}...</p>
+                  <Link href={`/services/${service.slug}`} className={styles.link}>
                     Learn more
                     <ArrowUpRight size={16} aria-hidden="true" />
                   </Link>

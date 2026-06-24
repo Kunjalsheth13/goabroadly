@@ -1,31 +1,37 @@
 export const colors = {
-  primary: "#0B0F19",
-  secondary: "#3B5BDB",
-  accent: "#C9A962",
-  accentLight: "#22D3EE",
-  success: "#16A34A",
+  primary: "#38B2AC",      // Teal
+  secondary: "#7DD3C7",    // Light Teal
+  accent: "#A3D65C",       // Lime Green
+  accentLight: "#D9F99D",
+
+  success: "#22C55E",
   warning: "#F59E0B",
-  danger: "#DC2626",
+  danger: "#EF4444",
 
   background: "#FFFFFF",
-  surface: "#F4F6FA",
-  surfaceDark: "#12182B",
+  surface: "#F8FAFC",
+  surfaceDark: "#0F172A",
 
-  textPrimary: "#0B0F19",
-  textSecondary: "#64748B",
+  textPrimary: "#111827",
+  textSecondary: "#475569",
   textMuted: "#94A3B8",
 
   border: "#E2E8F0",
 
   onDark: "#FFFFFF",
-  onDarkMuted: "rgba(255, 255, 255, 0.72)",
-  glass: "rgba(255, 255, 255, 0.08)",
-  glassBorder: "rgba(255, 255, 255, 0.14)",
+  onDarkMuted: "rgba(255,255,255,0.72)",
 
-  gradientPrimary: "linear-gradient(135deg, #3B5BDB 0%, #22D3EE 100%)",
-  gradientGold: "linear-gradient(135deg, #C9A962 0%, #E8D5A3 100%)",
+  glass: "rgba(255,255,255,0.90)",
+  glassBorder: "rgba(226,232,240,0.7)",
+
+  gradientPrimary:
+    "linear-gradient(135deg, #38B2AC 0%, #A3D65C 100%)",
+
+  gradientGold:
+    "linear-gradient(135deg, #38B2AC 0%, #7DD3C7 50%, #A3D65C 100%)",
+
   gradientHero:
-    "radial-gradient(ellipse at 25% 50%, rgba(59, 91, 219, 0.4) 0%, transparent 55%), radial-gradient(ellipse at 80% 20%, rgba(34, 211, 238, 0.22) 0%, transparent 50%), radial-gradient(ellipse at 60% 90%, rgba(201, 169, 98, 0.12) 0%, transparent 45%)",
+    "radial-gradient(circle at 20% 20%, rgba(56,178,172,0.12) 0%, transparent 40%), radial-gradient(circle at 80% 80%, rgba(163,214,92,0.10) 0%, transparent 40%)",
 } as const;
 
 export type ColorKey = keyof typeof colors;

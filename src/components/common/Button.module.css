@@ -43,12 +43,12 @@
 
 .outline {
   background: transparent;
-  color: var(--color-secondary);
-  border: 2px solid var(--color-secondary);
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
 }
 
 .outline:hover:not(:disabled) {
-  background: var(--color-secondary);
+  background: var(--color-primary);
   color: var(--color-on-dark);
 }
 

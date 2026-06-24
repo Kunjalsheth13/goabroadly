@@ -1,149 +1,164 @@
 "use client";
 
-import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
-import {
-  ArrowRight,
-  BadgeCheck,
-  CheckCircle2,
-  Globe2,
-  Sparkles,
-} from "lucide-react";
+import { CheckCircle2, BadgeCheck } from "lucide-react";
 import Button from "@/components/common/Button";
-import AnimatedCounter from "@/components/animations/AnimatedCounter";
-import {
-  heroStats,
-  heroTrustBadges,
-  heroVisaCards,
-  heroOfferCards,
-} from "@/constants/content";
+import BubbleGlobe from "./BubbleGlobe";
+import FlowingBanner from "./FlowingBanner";
 import styles from "./HeroSection.module.css";
 
-const GlobeScene = dynamic(() => import("@/components/three/GlobeScene"), {
-  ssr: false,
-  loading: () => <div className={styles.canvasWrap} aria-hidden="true" />,
-});
+const leftCards = [
+  { label: "UK Student Visa", status: "Approved", flag: "gb" },
+  { label: "Sheffield Hallam", sub: "Offer Letter", status: "Confirmed", flag: "gb" },
+  { label: "Consultation Fee", status: "0", isFee: true },
+];
+
+const rightCards = [
+  { label: "98%", sub: "VISA SUCCESS", isStat: true },
+  { label: "Middlesex University", sub: "Offer Letter", status: "Confirmed", flag: "gb" },
+  { label: "Sheffield Hallam", sub: "MSc Marketing", status: "Approved", flag: "gb" },
+];
 
 export default function HeroSection() {
-  const [particleCount, setParticleCount] = useState(160);
-
-  useEffect(() => {
-    const isMobile = window.matchMedia("(max-width: 768px)").matches;
-    const isReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    setParticleCount(isReduced ? 40 : isMobile ? 60 : 160);
-  }, []);
-
   return (
-    <section className={styles.hero} aria-label="Hero">
-      <div className={styles.bgGradient} aria-hidden="true" />
-      <div className={styles.gridOverlay} aria-hidden="true" />
+    <>
+      <section className={styles.hero} aria-label="Hero">
+        <div className={styles.bgGradient} aria-hidden="true" />
 
-      <div className={`container ${styles.inner}`}>
-        <div className={styles.content}>
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <span className={styles.badge}>
-              <Sparkles size={14} aria-hidden="true" />
-              Trusted by 5,000+ International Students
-            </span>
-
-            <h1 className={styles.title}>
-              Your Gateway to{" "}
-              <span className={styles.titleAccent}>Global Education</span>
-            </h1>
-
-            <p className={styles.subtitle}>
-              Premium study abroad consultancy helping ambitious students secure
-              admissions at world-class universities, navigate visas with confidence,
-              and launch international careers.
-            </p>
-
-            <div className={styles.actions}>
-              <Button href="/free-assessment" size="lg" className={styles.primaryBtn}>
-                Start Free Assessment
-                <ArrowRight size={18} aria-hidden="true" />
-              </Button>
-              <Button href="/contact" variant="light" size="lg">
-                Book Consultation
-              </Button>
-            </div>
-
-            <div className={styles.trustBadges}>
-              {heroTrustBadges.map((badge) => (
-                <span key={badge} className={styles.trustBadge}>
-                  <BadgeCheck size={14} aria-hidden="true" />
-                  {badge}
-                </span>
-              ))}
-            </div>
-
-            <div className={styles.stats} aria-label="Key statistics">
-              {heroStats.map((stat) => (
-                <div key={stat.label} className={styles.stat}>
-                  <span className={styles.statValue}>
-                    <AnimatedCounter value={stat.value} suffix={stat.suffix} />
-                  </span>
-                  <span className={styles.statLabel}>{stat.label}</span>
-                </div>
-              ))}
-            </div>
-          </motion.div>
-        </div>
-
-        <div className={styles.visual}>
-          <div className={styles.canvasWrap} aria-hidden="true">
-            <GlobeScene particleCount={particleCount} />
-          </div>
-
-          <div className={styles.floatingCards}>
-            {heroVisaCards.map((card, i) => (
+        <div className={`container ${styles.inner}`}>
+          {/* Left floating cards */}
+          <div className={styles.leftCards} aria-hidden="true">
+            {leftCards.map((card, i) => (
               <motion.div
                 key={card.label}
-                className={styles.visaCard}
-                initial={{ opacity: 0, x: 30 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.6 + i * 0.15, duration: 0.7 }}
-                style={{ animationDelay: `${i * 0.5}s` }}
+                className={`${styles.floatCard} ${card.isFee ? styles.feeCard : ""}`}
+                animate={{ y: [0, -10, 0] }}
+                transition={{ duration: 4 + i, repeat: Infinity, ease: "easeInOut", delay: i * 0.4 }}
               >
-                <div className={styles.visaHeader}>
-                  <Globe2 size={16} aria-hidden="true" />
-                  <span className={styles.visaStatus}>
-                    <CheckCircle2 size={12} aria-hidden="true" />
-                    {card.status}
-                  </span>
-                </div>
-                <div className={styles.visaLabel}>{card.label}</div>
-                <div className={styles.visaCountry}>{card.country}</div>
-              </motion.div>
-            ))}
-
-            {heroOfferCards.map((offer, i) => (
-              <motion.div
-                key={offer.university}
-                className={styles.offerCard}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.9 + i * 0.15, duration: 0.7 }}
-              >
-                <span className={styles.offerStatus}>{offer.status}</span>
-                <div className={styles.offerUniversity}>{offer.university}</div>
-                <div className={styles.offerProgram}>{offer.program}</div>
+                {card.isFee ? (
+                  <>
+                    <span className={styles.feeAmount}>0</span>
+                    <span className={styles.feeLabel}>CONSULTANCY FEE</span>
+                  </>
+                ) : (
+                  <>
+                    <div className={styles.cardHeader}>
+                      {card.flag && (
+                        <img
+                          src={`https://flagcdn.com/w40/${card.flag}.png`}
+                          alt=""
+                          width={20}
+                          height={15}
+                          className={styles.flag}
+                          loading="lazy"
+                        />
+                      )}
+                      <span className={styles.cardLabel}>{card.label}</span>
+                    </div>
+                    {card.sub && <span className={styles.cardSub}>{card.sub}</span>}
+                    {card.status && (
+                      <span className={`${styles.badge} ${card.status === "Approved" ? styles.badgeGreen : styles.badgeTeal}`}>
+                        <CheckCircle2 size={12} aria-hidden="true" />
+                        {card.status}
+                      </span>
+                    )}
+                  </>
+                )}
               </motion.div>
             ))}
           </div>
-        </div>
-      </div>
 
-      <div className={styles.scrollHint} aria-hidden="true">
-        <motion.span
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-        />
-      </div>
-    </section>
+          {/* Center content */}
+          <div className={styles.content}>
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <span className={styles.eyebrow}>
+                <BadgeCheck size={14} aria-hidden="true" />
+                No. 1 UK Visa Consultancy
+              </span>
+
+              <h1 className={styles.title}>
+                Your future
+                <br />
+                is abroad.
+              </h1>
+
+              <p className={styles.subtitle}>
+                Expert visa guidance, zero consultancy fees, and advice that actually
+                gets you there. Specialising in UK study visas from Ahmedabad.
+              </p>
+
+              <div className={styles.actions}>
+                <Button href="/contact" size="lg">Book Free Consultation</Button>
+                <Button href="/visa-types/student-visa" variant="outline" size="lg">
+                  Visa Guide
+                </Button>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Right floating cards + globe */}
+          <div className={styles.rightArea}>
+            <BubbleGlobe />
+            <div className={styles.rightCards} aria-hidden="true">
+              {rightCards.map((card, i) => (
+                <motion.div
+                  key={card.label + i}
+                  className={`${styles.floatCard} ${card.isStat ? styles.statCard : ""}`}
+                  animate={{ y: [0, -8, 0] }}
+                  transition={{ duration: 5 + i * 0.5, repeat: Infinity, ease: "easeInOut", delay: i * 0.6 }}
+                >
+                  {card.isStat ? (
+                    <>
+                      <span className={styles.statValue}>{card.label}</span>
+                      <span className={styles.statLabel}>{card.sub}</span>
+                    </>
+                  ) : (
+                    <>
+                      <div className={styles.cardHeader}>
+                        {card.flag && (
+                          <img
+                            src={`https://flagcdn.com/w40/${card.flag}.png`}
+                            alt=""
+                            width={20}
+                            height={15}
+                            className={styles.flag}
+                            loading="lazy"
+                          />
+                        )}
+                        <span className={styles.cardLabel}>{card.label}</span>
+                      </div>
+                      {card.sub && <span className={styles.cardSub}>{card.sub}</span>}
+                      {card.status && (
+                        <span className={`${styles.badge} ${card.status === "Approved" ? styles.badgeGreen : styles.badgeTeal}`}>
+                          <CheckCircle2 size={12} aria-hidden="true" />
+                          {card.status}
+                        </span>
+                      )}
+                    </>
+                  )}
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom stats bar */}
+        <div className={styles.statsBar}>
+          <div className={`container ${styles.statsInner}`}>
+            <span>98% Visa Success Rate</span>
+            <span className={styles.statsDot} aria-hidden="true" />
+            <span>35+ Partner Universities</span>
+            <span className={styles.statsDot} aria-hidden="true" />
+            <span>0 Consultancy Fees</span>
+          </div>
+        </div>
+      </section>
+
+      <FlowingBanner />
+    </>
   );
 }
