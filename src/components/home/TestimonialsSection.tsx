@@ -1,11 +1,19 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
-import { testimonials as fallbackTestimonials } from "@/constants/content";
-import FadeIn from "@/components/animations/FadeIn";
+import { motion } from "framer-motion";
+import {
+  Quote,
+  GraduationCap,
+  BadgeCheck,
+  Smile,
+  FileText,
+} from "lucide-react";
+
+import sectionBg from "@/assets/images/studydestinationbg.png";
+import cardBg from "@/assets/images/testinomialcardbg.png";
+
 import styles from "./TestimonialsSection.module.css";
 
 type TestimonialItem = {
@@ -20,140 +28,154 @@ type TestimonialItem = {
 };
 
 export default function TestimonialsSection() {
-  const [items, setItems] = useState<TestimonialItem[]>(
-    fallbackTestimonials.map((t) => ({
-      name: t.name,
-      country: t.country,
-      university: t.program,
-      quote: t.quote,
-      image: t.image,
-    }))
-  );
-  const [active, setActive] = useState(0);
+  const [items, setItems] = useState<TestimonialItem[]>([]);
 
   useEffect(() => {
     fetch("/api/testimonials")
       .then((r) => r.json())
       .then((data) => {
-        if (Array.isArray(data) && data.length > 0) {
-          setItems(
-            data.map((t: TestimonialItem) => ({
-              id: t.id,
-              name: t.name,
-              country: t.country,
-              university: t.university,
-              quote: t.testimonial,
-              image: t.image || "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200&q=80&auto=format&fit=crop",
-            }))
-          );
+        if (Array.isArray(data)) {
+          setItems(data);
         }
       })
       .catch(() => {});
   }, []);
 
-  const prev = () => setActive((a) => (a === 0 ? items.length - 1 : a - 1));
-  const next = () => setActive((a) => (a === items.length - 1 ? 0 : a + 1));
+  useEffect(() => {
+    if (items.length <= 3) return;
 
-  const current = items[active];
-  if (!current) return null;
+    const timer = setInterval(() => {
+      setItems((prev) => [...prev.slice(1), prev[0]]);
+    }, 4000);
 
-  const quoteText = current.quote || current.testimonial || "";
-  const programText = current.university || current.program || "";
+    return () => clearInterval(timer);
+  }, [items]);
 
   return (
-    <section className={styles.section} aria-labelledby="testimonials-title">
-      <div className={styles.bgPattern} aria-hidden="true" />
+    <section className={styles.section}>
+     <div className={styles.bgWrapper}>
+  <Image
+    src={sectionBg}
+    alt=""
+    priority
+    className={styles.sectionBg}
+  />
+</div>
+
       <div className="container">
-        <FadeIn>
-          <div className="sectionHeader">
-            <span className="sectionEyebrow">Success Stories</span>
-            <h2 id="testimonials-title" className="sectionTitle">
-              Student Testimonials
-            </h2>
-            <p className="sectionSubtitle">
-              Real stories from students who transformed their futures with GoAbroadly.
-            </p>
+        <div className={styles.heading}>
+          <div className={styles.badge}>
+            <Quote size={16} fill="currentColor" />
+            Student Success Stories
           </div>
-        </FadeIn>
 
-        <FadeIn delay={0.15}>
-          <div className={styles.showcase}>
-            <div className={styles.mainCard}>
-              <Quote className={styles.quoteIcon} size={40} aria-hidden="true" />
+          <h2>
+            What Our <span>Students</span> Say
+          </h2>
 
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={current.id || current.name}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.4 }}
-                  className={styles.slideContent}
-                >
-                  <blockquote className={styles.quote}>
-                    &ldquo;{quoteText}&rdquo;
-                  </blockquote>
+          <p>
+            Real stories from real students who turned their study abroad dreams
+            into reality with <strong>GoAbroadly.</strong>
+          </p>
 
-                  <footer className={styles.author}>
-                    <div className={styles.avatar}>
-                      <Image
-                        src={current.image}
-                        alt={current.name}
-                        fill
-                        sizes="56px"
-                        className={styles.avatarImage}
-                      />
-                    </div>
-                    <div>
-                      <cite className={styles.name}>{current.name}</cite>
-                      <p className={styles.program}>{programText}</p>
-                      <p className={styles.country}>{current.country}</p>
-                    </div>
-                  </footer>
-                </motion.div>
-              </AnimatePresence>
+          <div className={styles.line} />
+        </div>
 
-              <div className={styles.controls}>
-                <button type="button" className={styles.navBtn} onClick={prev} aria-label="Previous testimonial">
-                  <ChevronLeft size={20} />
-                </button>
-                <div className={styles.dots} role="tablist" aria-label="Testimonial navigation">
-                  {items.map((t, i) => (
-                    <button
-                      key={t.id || t.name}
-                      type="button"
-                      role="tab"
-                      className={`${styles.dot} ${i === active ? styles.dotActive : ""}`}
-                      onClick={() => setActive(i)}
-                      aria-selected={i === active}
-                      aria-label={`View testimonial from ${t.name}`}
-                    />
-                  ))}
+        <div className={styles.cards}>
+          {items.slice(0, 3).map((item) => (
+            <motion.div
+              key={item.id}
+              layout
+              className={styles.card}
+            >
+              <Image
+                src={cardBg}
+                alt=""
+                fill
+                className={styles.cardBg}
+              />
+
+              {/* <div className={styles.stars}>★★★★★</div> */}
+
+              {/* <Quote className={styles.quoteIcon} /> */}
+
+              <p className={styles.text}>
+                {item.testimonial || item.quote}
+              </p>
+
+              <div className={styles.user}>
+                <div className={styles.avatar}>
+                  <Image
+                    src={item.image}
+                    alt={item.name}
+                    fill
+                  />
                 </div>
-                <button type="button" className={styles.navBtn} onClick={next} aria-label="Next testimonial">
-                  <ChevronRight size={20} />
-                </button>
-              </div>
-            </div>
 
-            <div className={styles.sideCards} aria-hidden="true">
-              {items.map((t, i) => (
-                <button
-                  key={t.id || t.name}
-                  type="button"
-                  className={`${styles.sideCard} ${i === active ? styles.sideCardActive : ""}`}
-                  onClick={() => setActive(i)}
-                  tabIndex={-1}
-                >
-                  <div className={styles.sideAvatar}>
-                    <Image src={t.image} alt="" fill sizes="40px" className={styles.avatarImage} />
-                  </div>
-                  <span className={styles.sideName}>{t.name}</span>
-                </button>
-              ))}
+                <div>
+                  <h4>{item.name}</h4>
+
+                  {item.program && (
+                    <span>{item.program}</span>
+                  )}
+
+                  {item.university && (
+                    <p>{item.university}</p>
+                  )}
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        <div className={styles.dots}>
+          {items.map((_, i) => (
+            <span
+              key={i}
+              className={i === 0 ? styles.activeDot : ""}
+            />
+          ))}
+        </div>
+
+        <div className={styles.stats}>
+          <div className={styles.statItem}>
+            <GraduationCap />
+            <div>
+              <h3>25,000+</h3>
+              <p>Happy Students</p>
             </div>
           </div>
-        </FadeIn>
+
+          <div className={styles.divider} />
+
+          <div className={styles.statItem}>
+            <FileText />
+            <div>
+              <h3>35,000+</h3>
+              <p>Visas Processed</p>
+            </div>
+          </div>
+
+          <div className={styles.divider} />
+
+          <div className={styles.statItem}>
+            <BadgeCheck />
+            <div>
+              <h3>98%</h3>
+              <p>Visa Success Rate</p>
+            </div>
+          </div>
+
+          <div className={styles.divider} />
+
+          <div className={styles.statItem}>
+            <Smile />
+            <div>
+              <h3>4.9/5</h3>
+              <p>Average Rating</p>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );

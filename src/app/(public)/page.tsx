@@ -17,8 +17,8 @@ export default function HomePage() {
   return (
     <>
       <HeroSection />
-      <PartnerMarquee />
-      <StatisticsSection />
+      {/* <PartnerMarquee /> */}
+      {/* <StatisticsSection /> */}
       <ServicesGrid />
       <EligibilityChecker />
       <DestinationsSection />

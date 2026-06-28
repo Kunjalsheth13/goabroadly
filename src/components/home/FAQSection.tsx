@@ -1,80 +1,162 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { Plus, Minus } from "lucide-react";
+import {
+  Plus,
+  Minus,
+  Headphones,
+  CircleHelp,
+} from "lucide-react";
+
+import faqGirl from "@/assets/images/faqs.png";
 import { faqItems } from "@/constants/content";
+
 import FadeIn from "@/components/animations/FadeIn";
 import styles from "./FAQSection.module.css";
 
-type FAQItem = { question: string; answer: string };
+type FAQItem = {
+  question: string;
+  answer: string;
+};
 
 type FAQSectionProps = {
   items?: FAQItem[];
   title?: string;
 };
 
-export default function FAQSection({ items, title }: FAQSectionProps = {}) {
+export default function FAQSection({
+  items,
+  title,
+}: FAQSectionProps = {}) {
   const faqs = items ?? faqItems;
   const sectionTitle = title ?? "Frequently Asked Questions";
+
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
-  const toggle = (index: number) => {
-    setOpenIndex(openIndex === index ? null : index);
-  };
-
   return (
-    <section className={styles.section} aria-labelledby="faq-title">
+    <section className={styles.section}>
       <div className="container">
-        <div className={styles.layout}>
+        <FadeIn>
+          <div className={styles.heading}>
+           <span className={styles.badge}>
+  <span className={styles.badgeIcon}>
+    <CircleHelp size={18} strokeWidth={2.5} />
+  </span>
+
+  Got Questions?
+</span>
+
+            <h2 className={styles.title}>
+              Frequently Asked <span>Questions</span>
+            </h2>
+
+            <p className={styles.subtitle}>
+              Everything you need to know about studying abroad with
+              GoAbroadly.
+            </p>
+
+            <p className={styles.contactText}>
+              Can't find your answer?
+              <a href="/contact"> Contact our team.</a>
+            </p>
+
+            <div className={styles.divider}>
+              <span />
+              <i />
+              <span />
+            </div>
+          </div>
+        </FadeIn>
+
+        <div className={styles.wrapper}>
+          {/* LEFT */}
           <FadeIn>
-            <div className={styles.header}>
-              <span className="sectionEyebrow">Got Questions?</span>
-              <h2 id="faq-title" className="sectionTitle">
-                {sectionTitle}
-              </h2>
-              <p className={styles.headerText}>
-                Everything you need to know about studying abroad with GoAbroadly.
-                Can&apos;t find your answer?{" "}
-                <a href="/contact" className={styles.contactLink}>
-                  Contact our team
-                </a>
-                .
-              </p>
+            <div className={styles.leftSide}>
+              <Image
+                src={faqGirl}
+                alt="Student"
+                className={styles.student}
+                priority
+              />
+
+              <div className={styles.contactCard}>
+                <div className={styles.contactIcon}>
+                  <Headphones size={24} />
+                </div>
+
+                <div>
+                  <h4>Still have questions?</h4>
+                  <p>Our experts are here to help!</p>
+
+                  <a href="/contact">
+                    Contact our team →
+                  </a>
+                </div>
+              </div>
             </div>
           </FadeIn>
 
-          <div className={styles.list} role="list">
-            {faqs.map((item, i) => {
-              const isOpen = openIndex === i;
+          {/* RIGHT */}
+          <div className={styles.list}>
+            {faqs.map((item, index) => {
+              const open = openIndex === index;
 
               return (
-                <FadeIn key={item.question} delay={i * 0.05}>
-                  <div className={styles.item} role="listitem">
+                <FadeIn key={item.question} delay={index * 0.05}>
+                  <div
+                    className={styles.item}
+                    onMouseEnter={() => {
+                      if (window.innerWidth > 1024) {
+                        setOpenIndex(index);
+                      }
+                    }}
+                  >
                     <button
-                      type="button"
-                      className={`${styles.question} ${isOpen ? styles.questionOpen : ""}`}
-                      onClick={() => toggle(i)}
-                      aria-expanded={isOpen}
-                      aria-controls={`faq-answer-${i}`}
+                      className={styles.question}
+                      onClick={() =>
+                        setOpenIndex(open ? null : index)
+                      }
                     >
-                      <span>{item.question}</span>
-                      <span className={styles.iconWrap} aria-hidden="true">
-                        {isOpen ? <Minus size={18} /> : <Plus size={18} />}
+                      <span
+                        className={`${styles.iconBox} ${
+                          open ? styles.openIcon : ""
+                        }`}
+                      >
+                        {open ? (
+                          <Minus size={18} />
+                        ) : (
+                          <Plus size={18} />
+                        )}
+                      </span>
+
+                      <span className={styles.questionText}>
+                        {item.question}
                       </span>
                     </button>
 
-                    <AnimatePresence initial={false}>
-                      {isOpen && (
+                    <AnimatePresence>
+                      {open && (
                         <motion.div
-                          id={`faq-answer-${i}`}
+                          initial={{
+                            height: 0,
+                            opacity: 0,
+                          }}
+                          animate={{
+                            height: "auto",
+                            opacity: 1,
+                          }}
+                          exit={{
+                            height: 0,
+                            opacity: 0,
+                          }}
+                          transition={{
+                            duration: 0.25,
+                          }}
                           className={styles.answerWrap}
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: "auto", opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
-                          transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                         >
-                          <p className={styles.answer}>{item.answer}</p>
+                          <p>{item.answer}</p>
                         </motion.div>
                       )}
                     </AnimatePresence>

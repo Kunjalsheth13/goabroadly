@@ -151,28 +151,40 @@ export const destinations = [
 
 export const whyChooseUs = [
   {
-    title: "Expert Counselors",
+    title: "Expert Guidance",
     description:
-      "Certified advisors with years of international education and immigration experience.",
+      "Our experienced counselors provide personalized advice tailored to your goals and academic background.",
     icon: "Users",
-  },
-  {
-    title: "98% Visa Success",
-    description:
-      "Proven track record with comprehensive documentation and interview preparation.",
-    icon: "ShieldCheck",
   },
   {
     title: "End-to-End Support",
     description:
-      "From university selection to pre-departure orientation and post-arrival care.",
-    icon: "HeartHandshake",
+      "From university shortlisting to visa approval, we are with you at every step of your study abroad journey.",
+    icon: "FileCheck",
   },
   {
-    title: "Free Assessment",
+    title: "High Visa Success Rate",
     description:
-      "Get a personalized roadmap for your study abroad journey at no cost.",
-    icon: "Sparkles",
+      "Our proven process and strong documentation support ensure a higher chance of visa success.",
+    icon: "ShieldCheck",
+  },
+  {
+    title: "Wide Global Network",
+    description:
+      "We are associated with top universities and institutions across the globe to bring you the best opportunities.",
+    icon: "Globe",
+  },
+  {
+    title: "Transparent & Honest",
+    description:
+      "We believe in complete transparency with no hidden charges and honest recommendations.",
+    icon: "HandCoins",
+  },
+  {
+    title: "Post-Visa Support",
+    description:
+      "Our support doesn't end with your visa. We assist you even after you reach your destination.",
+    icon: "Headphones",
   },
 ] as const;
 

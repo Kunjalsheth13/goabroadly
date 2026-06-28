@@ -1,42 +1,84 @@
 "use client";
 
-import { ArrowRight, Sparkles } from "lucide-react";
-import Button from "@/components/common/Button";
-import FadeIn from "@/components/animations/FadeIn";
+import { ArrowRight, Gift, Phone } from "lucide-react";
+import { motion } from "framer-motion";
+import { FaPlane } from "react-icons/fa6";
 import styles from "./CTASection.module.css";
+import ctaBg from "@/assets/images/ctabg.png";
 
 export default function CTASection() {
   return (
-    <section className={styles.section} aria-labelledby="cta-title">
-      <div className={styles.bgOrb} aria-hidden="true" />
-      <div className={styles.bgOrb2} aria-hidden="true" />
-
+    <section
+      className={styles.section}
+      style={{
+        backgroundImage: `url(${ctaBg.src})`,
+      }}
+    >
       <div className="container">
-        <FadeIn>
-          <div className={styles.card}>
-            <span className={styles.eyebrow}>
-              <Sparkles size={16} aria-hidden="true" />
-              Begin Your Journey
-            </span>
-            <h2 id="cta-title" className={styles.title}>
-              Ready to Start Your Global Education Journey?
-            </h2>
-            <p className={styles.description}>
-              Take the first step toward your dream university. Get a free
-              profile assessment and personalized roadmap from our expert
-              counselors today.
-            </p>
-            <div className={styles.actions}>
-              <Button href="/free-assessment" size="lg" className={styles.primaryBtn}>
-                Get Free Assessment
-                <ArrowRight size={18} aria-hidden="true" />
-              </Button>
-              <Button href="/contact" variant="light" size="lg">
-                Speak to a Counselor
-              </Button>
-            </div>
+        <motion.div
+          className={styles.card}
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+        >
+          <div className={styles.badge}>
+           <div className={styles.badgeIcon}>
+  <FaPlane size={25} />
+</div>
+
+            <span>BEGIN YOUR JOURNEY</span>
           </div>
-        </FadeIn>
+
+        <h2 className={styles.title}>
+  <span className={styles.line1}>
+    Ready to Start Your
+  </span>
+
+  <span className={styles.line2}>
+    <span className={styles.redText}>
+      Global Education
+    </span>{" "}
+    Journey?
+  </span>
+</h2>
+
+        <div className={styles.divider}>
+  <span />
+  <FaPlane className={styles.dividerPlane} />
+  <span />
+</div>
+
+          <p className={styles.description}>
+            Take the first step toward your dream university.
+            <br />
+            Get a free profile assessment and personalized roadmap
+            <br />
+            from our expert counselors today.
+          </p>
+
+          <div className={styles.actions}>
+            <a href="/free-assessment" className={styles.primaryBtn}>
+              <div className={styles.btnIcon}>
+                <Gift size={22} />
+              </div>
+
+              <span>Get Free Assessment</span>
+
+              <ArrowRight size={24} />
+            </a>
+
+            <a href="/contact" className={styles.secondaryBtn}>
+              <div className={styles.btnIconSecondary}>
+                <Phone size={20} />
+              </div>
+
+              <span>Speak to a Counselor</span>
+
+              <ArrowRight size={24} />
+            </a>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

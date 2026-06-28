@@ -1,104 +1,122 @@
 "use client";
 
-import { useRef, useState } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
-import {
-  MessageCircle,
-  ClipboardCheck,
-  Building2,
-  FileCheck,
-  FileText,
-  BadgeCheck,
-  Stamp,
-  Plane,
-  MapPin,
-  type LucideIcon,
-} from "lucide-react";
-import { journeySteps } from "@/constants/content";
-import { useMediaQuery } from "@/hooks/useMediaQuery";
+import Image from "next/image";
+import { ShieldCheck, ArrowRight } from "lucide-react";
 import FadeIn from "@/components/animations/FadeIn";
+
+import bgImage from "@/assets/images/endtoendsupportbg.png";
+
+import icon1 from "@/assets/images/endtoendsupport1.png";
+import icon2 from "@/assets/images/endtoendsupport2.png";
+import icon3 from "@/assets/images/endtoendsupport3.png";
+import icon4 from "@/assets/images/endtoendsupport4.png";
+import icon5 from "@/assets/images/endtoendsupport5.png";
+import icon6 from "@/assets/images/endtoendsupport6.png";
+
 import styles from "./JourneySection.module.css";
 
-const iconMap: Record<string, LucideIcon> = {
-  MessageCircle,
-  ClipboardCheck,
-  Building2,
-  FileCheck,
-  FileText,
-  BadgeCheck,
-  Stamp,
-  Plane,
-  MapPin,
-};
+const services = [
+  {
+    id: "01",
+    image: icon1,
+    title: "Profile Evaluation",
+    description:
+      "We assess your academic background, goals & eligibility to create the best plan.",
+  },
+  {
+    id: "02",
+    image: icon2,
+    title: "University Shortlisting",
+    description:
+      "Get a curated list of top universities that match your profile and aspirations.",
+  },
+  {
+    id: "03",
+    image: icon3,
+    title: "SOP & LOR",
+    description:
+      "Expert guidance for compelling SOPs and strong LORs that make you stand out.",
+  },
+  {
+    id: "04",
+    image: icon4,
+    title: "Visa Filing",
+    description:
+      "Hassle-free documentation and visa filing with 100% accuracy and transparency.",
+  },
+  {
+    id: "05",
+    image: icon5,
+    title: "IELTS & PTE Training",
+    description:
+      "Achieve your target band score with expert trainers and personalized coaching.",
+  },
+  {
+    id: "06",
+    image: icon6,
+    title: "Loan Assistance",
+    description:
+      "Get guidance for education loans with easy processes and best loan options.",
+  },
+];
 
 export default function JourneySection() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [activeStep, setActiveStep] = useState(1);
-  const isMobile = useMediaQuery("(max-width: 768px)");
-
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"],
-  });
-
-  const progressWidth = useTransform(scrollYProgress, [0.1, 0.7], ["0%", "100%"]);
-
   return (
-    <section className={styles.section} aria-labelledby="journey-title" ref={containerRef}>
-      <div className={styles.bgGlow} aria-hidden="true" />
+    <section className={styles.section}>
+      <Image
+        src={bgImage}
+        alt=""
+        fill
+        priority
+        className={styles.background}
+      />
+
       <div className="container">
         <FadeIn>
-          <div className="sectionHeader">
-            <span className="sectionEyebrow">Your Path Abroad</span>
-            <h2 id="journey-title" className="sectionTitle">
-              The Student Journey
+          <div className={styles.header}>
+            <div className={styles.badge}>
+              <ShieldCheck size={16} />
+              End-To-End Support
+            </div>
+
+            <h2 className={styles.title}>
+              Complete <span>Study Abroad</span> Support
             </h2>
-            <p className="sectionSubtitle">
-              Nine guided steps from your first consultation to thriving on campus
-              abroad — with expert support at every milestone.
+
+            <p className={styles.subtitle}>
+              From shortlisting the right university to visa approval,
+              we’re with you at every step of your journey.
             </p>
+
+            <div className={styles.line} />
           </div>
         </FadeIn>
 
-        {!isMobile && (
-          <div className={styles.progressTrack} aria-hidden="true">
-            <div className={styles.progressLine} />
-            <motion.div className={styles.progressFill} style={{ width: progressWidth }} />
-          </div>
-        )}
+        <div className={styles.grid}>
+          {services.map((item) => (
+            <div key={item.id} className={styles.card}>
+              <div className={styles.number}>{item.id}</div>
 
-        <div
-          className={`${styles.timeline} ${isMobile ? styles.timelineVertical : styles.timelineHorizontal}`}
-          role="list"
-        >
-          {journeySteps.map((step, i) => {
-            const Icon = iconMap[step.icon] ?? MessageCircle;
-            const isActive = step.step <= activeStep;
+              <Image
+                src={item.image}
+                alt={item.title}
+                className={styles.icon}
+              />
 
-            return (
-              <FadeIn key={step.step} delay={i * 0.06}>
-                <motion.button
-                  type="button"
-                  className={`${styles.step} ${isActive ? styles.stepActive : ""}`}
-                  role="listitem"
-                  onClick={() => setActiveStep(step.step)}
-                  onMouseEnter={() => setActiveStep(step.step)}
-                  whileHover={{ y: -4 }}
-                  transition={{ duration: 0.25 }}
-                  aria-current={step.step === activeStep ? "step" : undefined}
-                  aria-label={`Step ${step.step}: ${step.title}`}
-                >
-                  <div className={styles.stepConnector} aria-hidden="true" />
-                  <div className={styles.stepIcon}>
-                    <Icon size={20} aria-hidden="true" />
-                    <span className={styles.stepNumber}>{step.step}</span>
-                  </div>
-                  <h3 className={styles.stepTitle}>{step.title}</h3>
-                  <p className={styles.stepDescription}>{step.description}</p>
-                </motion.button>
-              </FadeIn>
-            );
-          })}
+              <h3>{item.title}</h3>
+
+              <p>{item.description}</p>
+
+             <button className={styles.button}>
+  <span>Learn More</span>
+  <ArrowRight size={14} />
+</button>
+            </div>
+          ))}
+        </div>
+
+        <div className={styles.footerText}>
+          Your Dream. Our Guidance. Your Future.
         </div>
       </div>
     </section>

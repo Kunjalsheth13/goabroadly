@@ -12,7 +12,8 @@ import {
 import { siteConfig } from "@/constants/site";
 import MegaMenu from "./MegaMenu";
 import styles from "./Header.module.css";
-
+import Image from "next/image";
+import logo from "@/assets/images/logo.png";
 export default function Header() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
@@ -91,16 +92,16 @@ export default function Header() {
       {/* Main navbar */}
       <div className={styles.mainBar}>
         <div className={`container ${styles.mainInner}`}>
-          <Link href="/" className={styles.logo} aria-label="GoAbroadly Home">
-            <span className={styles.logoIcon} aria-hidden="true">
-              <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-                <rect x="4" y="16" width="4" height="8" rx="1" fill="#95d5b2" />
-                <rect x="10" y="10" width="4" height="14" rx="1" fill="#6dc5d6" />
-                <rect x="16" y="4" width="4" height="20" rx="1" fill="#4f7cff" />
-              </svg>
-            </span>
-            Go<span className={styles.logoAccent}>Abroadly</span>
-          </Link>
+        <Link href="/" className={styles.logo} aria-label="GoAbroadly Home">
+  <Image
+  src={logo}
+    alt="GoAbroadly"
+    width={260}
+    height={70}
+    priority
+    className={styles.logoImage}
+  />
+</Link>
 
           <nav className={styles.nav} aria-label="Main navigation">
             {megaMenus.map((menu) => (
@@ -123,10 +124,25 @@ export default function Header() {
             ))}
           </nav>
 
-          <a href={`tel:${siteConfig.phone.replace(/\s/g, "")}`} className={styles.phoneLink}>
-            {siteConfig.phone}
-          </a>
+        <div className={styles.headerRight}>
+  <a
+    href={`tel:${siteConfig.phone.replace(/\s/g, "")}`}
+    className={styles.phoneLink}
+  >
+    <span className={styles.phoneIcon}>
+      <Phone size={14} />
+    </span>
 
+    {siteConfig.phone}
+  </a>
+
+  <Link
+    href="/free-assessment"
+    className={styles.headerCta}
+  >
+    Book Free Consultation
+  </Link>
+</div>
           <button
             type="button"
             className={styles.menuBtn}

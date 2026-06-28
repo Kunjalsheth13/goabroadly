@@ -1,84 +1,203 @@
 "use client";
 
-import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
-import { ArrowRight, GraduationCap, Clock, DollarSign } from "lucide-react";
+import { ArrowRight, Plane } from "lucide-react";
+import { colors } from "@/constants/colors";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination, Autoplay } from "swiper/modules";
+
+import "swiper/css";
+import "swiper/css/pagination";
+import {
+  Users,
+  Globe,
+  FileCheck2,
+  ThumbsUp,
+  BadgeCheck,
+} from "lucide-react";
+import bgImage from "@/assets/images/studydestinationbg.png";
 import { studyAbroadData } from "@/constants/study-abroad-data";
-import FadeIn from "@/components/animations/FadeIn";
+
 import styles from "./DestinationsSection.module.css";
-
 export default function DestinationsSection() {
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-
   return (
-    <section className={styles.section} aria-labelledby="destinations-title">
+   <section
+  className={styles.section}
+  style={{
+    backgroundImage: `url(${bgImage.src})`,
+  }}
+>
       <div className="container">
-        <FadeIn>
-          <div className="sectionHeader">
-            <span className="sectionEyebrow">Explore the World</span>
-            <h2 id="destinations-title" className="sectionTitle">
-              Study Destinations
-            </h2>
-            <p className="sectionSubtitle">
-              Discover premier education hubs where your ambitions meet
-              world-class opportunity.
-            </p>
-          </div>
-        </FadeIn>
+        <div className={styles.header}>
+          <span className={styles.badge}>
+  <Plane
+    size={16}
+    fill={colors.danger}
+    color={colors.danger}
+    strokeWidth={2}
+  />
+  Top Destinations
+</span>
 
-        <div className={styles.grid}>
-          {studyAbroadData.map((dest, i) => (
-            <FadeIn key={dest.slug} delay={i * 0.06}>
-              <motion.article
-                className={styles.card}
-                onMouseEnter={() => setHoveredIndex(i)}
-                onMouseLeave={() => setHoveredIndex(null)}
-                whileHover={{ y: -6 }}
-                transition={{ duration: 0.35 }}
-              >
-                <div className={styles.imageWrap}>
+         <h2 className={styles.title}>
+  Popular Visa <span>Destinations</span>
+</h2>
+
+<p className={styles.subtitle}>
+  Explore the best countries to study, work, visit, and settle abroad with expert guidance.
+</p>
+        </div>
+
+    <Swiper
+  modules={[Pagination, Autoplay]}
+  pagination={{
+    clickable: true,
+  }}
+  autoplay={{
+    delay: 3500,
+    disableOnInteraction: false,
+  }}
+  loop
+  breakpoints={{
+    0: {
+      slidesPerView: 1.1,
+      spaceBetween: 16,
+    },
+
+    768: {
+      slidesPerView: 2.2,
+      spaceBetween: 20,
+    },
+
+    1024: {
+      slidesPerView: 4.5,
+      spaceBetween: 20,
+    },
+
+    1440: {
+      slidesPerView: 5.5,
+      spaceBetween: 20,
+    },
+  }}
+>
+          {studyAbroadData.map((country) => (
+            <SwiperSlide key={country.slug}>
+              <div className={styles.card}>
+                <div className={styles.imageWrapper}>
                   <Image
-                    src={dest.heroImage}
-                    alt={`Study in ${dest.country}`}
+                    src={country.heroImage}
+                    alt={country.country}
                     fill
-                    sizes="(max-width: 568px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     className={styles.image}
-                    loading="lazy"
                   />
-                  <div className={styles.overlay} />
-                  <h3 className={styles.countryOverlay}>{dest.country}</h3>
                 </div>
 
                 <div className={styles.content}>
-                  <div className={styles.stats}>
-                    <span className={styles.stat}>
-                      <GraduationCap size={14} aria-hidden="true" />
-                      {dest.topUniversities.length}+ Universities
-                    </span>
-                    <span className={styles.stat}>
-                      <Clock size={14} aria-hidden="true" />
-                      1-2 Year Programs
-                    </span>
-                    <span className={styles.stat}>
-                      <DollarSign size={14} aria-hidden="true" />
-                      Scholarships Available
-                    </span>
+                  <div className={styles.flagWrapper}>
+                    <Image
+                      src={country.flagImage}
+                      alt={country.country}
+                      width={56}
+                      height={56}
+                      className={styles.flag}
+                    />
                   </div>
 
+                  <h3>{country.country}</h3>
+
+                  <div className={styles.tags}>
+                    {country.visaTypes.map((item) => (
+                      <span key={item}>{item}</span>
+                    ))}
+                  </div>
+
+                  <div className={styles.line} />
+
                   <Link
-                    href={`/study-abroad/${dest.slug}`}
-                    className={`${styles.exploreLink} ${hoveredIndex === i ? styles.exploreLinkVisible : ""}`}
+                    href={`/study-abroad/${country.slug}`}
+                    className={styles.button}
                   >
-                    Explore {dest.country}
-                    <ArrowRight size={16} aria-hidden="true" />
+                    Read More
+                    <ArrowRight size={16} />
                   </Link>
                 </div>
-              </motion.article>
-            </FadeIn>
+              </div>
+            </SwiperSlide>
           ))}
-        </div>
+        </Swiper>
+
+       <div className={styles.stats}>
+  <div className={styles.statItem}>
+    <div
+      className={styles.icon}
+      style={{ background: colors.primary }}
+    >
+      <Users size={38} color="#fff" />
+    </div>
+
+    <div>
+      <strong>25,000+</strong>
+      <span>Happy Clients</span>
+    </div>
+  </div>
+
+  <div className={styles.statItem}>
+    <div
+      className={styles.icon}
+      style={{ background: colors.danger }}
+    >
+      <Globe size={38} color="#fff" />
+    </div>
+
+    <div>
+      <strong>20+</strong>
+      <span>Countries</span>
+    </div>
+  </div>
+
+  <div className={styles.statItem}>
+    <div
+      className={styles.icon}
+      style={{ background: colors.primary }}
+    >
+      <FileCheck2 size={38} color="#fff" />
+    </div>
+
+    <div>
+      <strong>35,000+</strong>
+      <span>Visas Processed</span>
+    </div>
+  </div>
+
+  <div className={styles.statItem}>
+    <div
+      className={styles.icon}
+      style={{ background: colors.danger }}
+    >
+      <ThumbsUp size={38} color="#fff" />
+    </div>
+
+    <div>
+      <strong>98%</strong>
+      <span>Success Rate</span>
+    </div>
+  </div>
+
+  <div className={styles.statItem}>
+    <div
+      className={styles.icon}
+      style={{ background: colors.primary }}
+    >
+      <BadgeCheck size={38} color="#fff" />
+    </div>
+
+    <div>
+      <strong>10+</strong>
+      <span>Years of Experience</span>
+    </div>
+  </div>
+</div>
       </div>
     </section>
   );

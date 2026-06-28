@@ -1,62 +1,93 @@
 "use client";
 
-import dynamic from "next/dynamic";
-import { ArrowRight, Plane, MapPin } from "lucide-react";
-import Button from "@/components/common/Button";
+import {
+  Plane,
+  Ticket,
+  Briefcase,
+  ShieldCheck,
+} from "lucide-react";
+
 import FadeIn from "@/components/animations/FadeIn";
-import { flightDestinations } from "@/constants/content";
+
+import freeFlightBg from "@/assets/images/freeflightbg.png";
+
 import styles from "./FlightSection.module.css";
 
-const AirplaneScene = dynamic(() => import("@/components/three/AirplaneScene"), {
-  ssr: false,
-  loading: () => <div className={styles.canvas} aria-hidden="true" />,
-});
+const benefits = [
+  {
+    icon: Ticket,
+    title: "100% Free Flight Ticket",
+    desc: "No hidden charges. Absolutely free for every student we place.",
+  },
+  {
+    icon: Briefcase,
+    title: "All Major Destinations",
+    desc: "Fly to your dream country with top airlines & best routes.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Safe & Secure Travel",
+    desc: "We ensure a smooth, safe and comfortable journey for you.",
+  },
+];
 
 export default function FlightSection() {
   return (
     <section className={styles.section} aria-labelledby="flight-title">
-      <div className={styles.skyGradient} aria-hidden="true" />
-      <div className={styles.cloudLayer} aria-hidden="true" />
-
-      <div className={styles.canvas} aria-hidden="true">
-        <AirplaneScene />
-      </div>
-
-      <div className={`container ${styles.content}`}>
-        <FadeIn>
-          <div className={styles.inner}>
-            <span className={styles.eyebrow}>
-              <Plane size={16} aria-hidden="true" />
-              Exclusive Student Benefit
-            </span>
-            <h2 id="flight-title" className={styles.title}>
-              Free Flight Ticket For Every Approved Student
-            </h2>
-            <p className={styles.description}>
-              When your visa is approved through GoAbroadly, we celebrate your
-              achievement with a complimentary economy flight to your study
-              destination. Your journey abroad starts with us — literally.
-            </p>
-
-            <div className={styles.destinations} aria-label="Flight destinations">
-              {flightDestinations.map((dest) => (
-                <span key={dest.code} className={styles.destination}>
-                  <MapPin size={12} aria-hidden="true" />
-                  <strong>{dest.code}</strong>
-                  {dest.city}
+      <FadeIn>
+        <div className={styles.fullWidth}>
+          <div
+            className={styles.card}
+            style={{
+              backgroundImage: `url(${freeFlightBg.src})`,
+            }}
+          >
+            <div className={styles.content}>
+              <div className={styles.left}>
+                <span className={styles.badge}>
+                  <Plane size={14} />
+                  Exclusive Benefit
                 </span>
-              ))}
+
+                <h2 id="flight-title" className={styles.title}>
+                  Every Student
+                  <br />
+                  We Place Gets a
+                  <br />
+                  <span>Free Flight Ticket!</span>
+                </h2>
+
+                <p className={styles.description}>
+                  Your dream destination is now closer than ever.
+                  <br />
+                  We not only help you reach your goals,
+                  <br />
+                  we take you there.
+                </p>
+
+                {/* <div className={styles.features}>
+                  {benefits.map((item) => {
+                    const Icon = item.icon;
+
+                    return (
+                      <div key={item.title} className={styles.feature}>
+                        <div className={styles.iconWrapper}>
+                          <Icon size={20} />
+                        </div>
+
+                        <div>
+                          <h4>{item.title}</h4>
+                          <p>{item.desc}</p>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div> */}
+              </div>
             </div>
-
-            <Button href="/free-assessment" size="lg" className={styles.cta}>
-              Claim Your Free Flight
-              <ArrowRight size={18} aria-hidden="true" />
-            </Button>
           </div>
-        </FadeIn>
-      </div>
-
-      <div className={styles.trailGlow} aria-hidden="true" />
+        </div>
+      </FadeIn>
     </section>
   );
 }

@@ -1,164 +1,320 @@
+
 "use client";
 
 import { motion } from "framer-motion";
-import { CheckCircle2, BadgeCheck } from "lucide-react";
+import {
+  ArrowRight,
+  Globe,
+  Users,
+  FileText,
+  ThumbsUp,
+  ShieldCheck,
+} from "lucide-react";
+
 import Button from "@/components/common/Button";
-import BubbleGlobe from "./BubbleGlobe";
-import FlowingBanner from "./FlowingBanner";
-import styles from "./HeroSection.module.css";
 
-const leftCards = [
-  { label: "UK Student Visa", status: "Approved", flag: "gb" },
-  { label: "Sheffield Hallam", sub: "Offer Letter", status: "Confirmed", flag: "gb" },
-  { label: "Consultation Fee", status: "0", isFee: true },
-];
-
-const rightCards = [
-  { label: "98%", sub: "VISA SUCCESS", isStat: true },
-  { label: "Middlesex University", sub: "Offer Letter", status: "Confirmed", flag: "gb" },
-  { label: "Sheffield Hallam", sub: "MSc Marketing", status: "Approved", flag: "gb" },
-];
-
+import heroBg from "@/assets/images/herobg.png";
+import heroIcon from "@/assets/images/heroicon.png";
+import { colors } from "@/constants/colors";
 export default function HeroSection() {
   return (
-    <>
-      <section className={styles.hero} aria-label="Hero">
-        <div className={styles.bgGradient} aria-hidden="true" />
+    <section style={styles.hero}>
+      {/* Background */}
+      <div style={styles.bgOverlay} />
 
-        <div className={`container ${styles.inner}`}>
-          {/* Left floating cards */}
-          <div className={styles.leftCards} aria-hidden="true">
-            {leftCards.map((card, i) => (
-              <motion.div
-                key={card.label}
-                className={`${styles.floatCard} ${card.isFee ? styles.feeCard : ""}`}
-                animate={{ y: [0, -10, 0] }}
-                transition={{ duration: 4 + i, repeat: Infinity, ease: "easeInOut", delay: i * 0.4 }}
-              >
-                {card.isFee ? (
-                  <>
-                    <span className={styles.feeAmount}>0</span>
-                    <span className={styles.feeLabel}>CONSULTANCY FEE</span>
-                  </>
-                ) : (
-                  <>
-                    <div className={styles.cardHeader}>
-                      {card.flag && (
-                        <img
-                          src={`https://flagcdn.com/w40/${card.flag}.png`}
-                          alt=""
-                          width={20}
-                          height={15}
-                          className={styles.flag}
-                          loading="lazy"
-                        />
-                      )}
-                      <span className={styles.cardLabel}>{card.label}</span>
-                    </div>
-                    {card.sub && <span className={styles.cardSub}>{card.sub}</span>}
-                    {card.status && (
-                      <span className={`${styles.badge} ${card.status === "Approved" ? styles.badgeGreen : styles.badgeTeal}`}>
-                        <CheckCircle2 size={12} aria-hidden="true" />
-                        {card.status}
-                      </span>
-                    )}
-                  </>
-                )}
-              </motion.div>
-            ))}
+      <div className="container" style={styles.container}>
+        {/* LEFT */}
+        <motion.div
+          initial={{ opacity: 0, x: -40 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
+          style={styles.left}
+        >
+          <div style={styles.badge}>
+          <ShieldCheck
+  size={16}
+  color={colors.danger}
+/>
+            Trusted Visa Partner For Your Global Dreams
           </div>
 
-          {/* Center content */}
-          <div className={styles.content}>
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          <h1 style={styles.heading}>
+            Your Journey.
+            <br />
+            Our Expertise.
+            <br />
+            <span style={styles.redText}>Global Opportunities.</span>
+          </h1>
+
+          <p style={styles.subtitle}>
+            Expert guidance for Study, Work, Visit & PR Visas.
+            <br />
+            Turning your international dreams into reality.
+          </p>
+
+          <div style={styles.buttons}>
+            <Button href="/contact" size="lg">
+              Book Free Consultation
+            </Button>
+
+            <Button
+              href="/countries"
+              variant="outline"
+              size="lg"
             >
-              <span className={styles.eyebrow}>
-                <BadgeCheck size={14} aria-hidden="true" />
-                No. 1 UK Visa Consultancy
-              </span>
-
-              <h1 className={styles.title}>
-                Your future
-                <br />
-                is abroad.
-              </h1>
-
-              <p className={styles.subtitle}>
-                Expert visa guidance, zero consultancy fees, and advice that actually
-                gets you there. Specialising in UK study visas from Ahmedabad.
-              </p>
-
-              <div className={styles.actions}>
-                <Button href="/contact" size="lg">Book Free Consultation</Button>
-                <Button href="/visa-types/student-visa" variant="outline" size="lg">
-                  Visa Guide
-                </Button>
-              </div>
-            </motion.div>
+              Explore Countries
+            </Button>
           </div>
 
-          {/* Right floating cards + globe */}
-          <div className={styles.rightArea}>
-            <BubbleGlobe />
-            <div className={styles.rightCards} aria-hidden="true">
-              {rightCards.map((card, i) => (
-                <motion.div
-                  key={card.label + i}
-                  className={`${styles.floatCard} ${card.isStat ? styles.statCard : ""}`}
-                  animate={{ y: [0, -8, 0] }}
-                  transition={{ duration: 5 + i * 0.5, repeat: Infinity, ease: "easeInOut", delay: i * 0.6 }}
-                >
-                  {card.isStat ? (
-                    <>
-                      <span className={styles.statValue}>{card.label}</span>
-                      <span className={styles.statLabel}>{card.sub}</span>
-                    </>
-                  ) : (
-                    <>
-                      <div className={styles.cardHeader}>
-                        {card.flag && (
-                          <img
-                            src={`https://flagcdn.com/w40/${card.flag}.png`}
-                            alt=""
-                            width={20}
-                            height={15}
-                            className={styles.flag}
-                            loading="lazy"
-                          />
-                        )}
-                        <span className={styles.cardLabel}>{card.label}</span>
-                      </div>
-                      {card.sub && <span className={styles.cardSub}>{card.sub}</span>}
-                      {card.status && (
-                        <span className={`${styles.badge} ${card.status === "Approved" ? styles.badgeGreen : styles.badgeTeal}`}>
-                          <CheckCircle2 size={12} aria-hidden="true" />
-                          {card.status}
-                        </span>
-                      )}
-                    </>
-                  )}
-                </motion.div>
+          {/* Happy clients */}
+          <div style={styles.clients}>
+            <div style={styles.avatarGroup}>
+              {[1, 2, 3, 4].map((i) => (
+                <img
+                  key={i}
+                  src={`https://i.pravatar.cc/60?img=${i + 10}`}
+                  style={styles.avatar}
+                />
               ))}
+            </div>
+
+            <div>
+              <div style={styles.clientTitle}>
+                25,000+ Happy Clients
+              </div>
+
+              <div style={styles.clientSub}>
+                Across 20+ Countries
+              </div>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* RIGHT */}
+        <motion.div
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1 }}
+          style={styles.right}
+        >
+          <img
+            src={heroIcon.src}
+            alt=""
+            style={styles.heroImage}
+          />
+        </motion.div>
+      </div>
+
+      {/* Bottom Stats */}
+      <div style={styles.statsWrapper}>
+        <div style={styles.stats}>
+          <div style={styles.statItem}>
+           <Users size={26} color={colors.danger} />
+
+            <div>
+              <h4>25,000+</h4>
+              <p>Happy Clients</p>
+            </div>
+          </div>
+
+          <div style={styles.statItem}>
+           <Globe size={26} color={colors.primary} />
+            <div>
+              <h4>20+</h4>
+              <p>Countries</p>
+            </div>
+          </div>
+
+          <div style={styles.statItem}>
+           <FileText size={26} color={colors.danger} />
+
+            <div>
+              <h4>35,000+</h4>
+              <p>Visas Processed</p>
+            </div>
+          </div>
+
+          <div style={styles.statItem}>
+           <ThumbsUp size={26} color={colors.success} />
+            <div>
+              <h4>98%</h4>
+              <p>Success Rate</p>
             </div>
           </div>
         </div>
-
-        {/* Bottom stats bar */}
-        <div className={styles.statsBar}>
-          <div className={`container ${styles.statsInner}`}>
-            <span>98% Visa Success Rate</span>
-            <span className={styles.statsDot} aria-hidden="true" />
-            <span>35+ Partner Universities</span>
-            <span className={styles.statsDot} aria-hidden="true" />
-            <span>0 Consultancy Fees</span>
-          </div>
-        </div>
-      </section>
-
-      <FlowingBanner />
-    </>
+      </div>
+    </section>
   );
 }
+
+const styles: Record<string, any> = {
+  hero: {
+    position: "relative",
+    overflow: "hidden",
+    minHeight: "100vh",
+    backgroundImage: `url(${heroBg.src})`,
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    backgroundColor: colors.background,
+  },
+
+  bgOverlay: {
+    position: "absolute",
+    inset: 0,
+    background:
+      `linear-gradient(
+        90deg,
+        rgba(255,255,255,0.96) 0%,
+        rgba(255,255,255,0.85) 45%,
+        rgba(255,255,255,0.30) 100%
+      )`,
+    zIndex: 1,
+  },
+
+  container: {
+    position: "relative",
+    zIndex: 2,
+    display: "grid",
+    gridTemplateColumns: "1fr 1fr",
+    alignItems: "center",
+    gap: "48px",
+    paddingTop: "40px",
+    paddingBottom: "140px",
+  },
+
+  left: {
+    maxWidth: "620px",
+  },
+
+  badge: {
+    display: "inline-flex",
+    alignItems: "center",
+    gap: "8px",
+    background: colors.glass,
+    border: `1px solid ${colors.glassBorder}`,
+    padding: "10px 18px",
+    borderRadius: "999px",
+    boxShadow: "0 8px 24px rgba(0,0,0,0.06)",
+    color: colors.primary,
+    fontWeight: 600,
+    fontSize: "13px",
+    marginBottom: "28px",
+  },
+
+ heading: {
+  fontSize: "clamp(3rem, 4vw, 4.5rem)",
+  lineHeight: 1.05,
+  fontWeight: 700,
+  letterSpacing: "-2px",
+  marginBottom: "24px",
+  color: colors.textPrimary,
+  fontFamily: '"Playfair Display", serif',
+},
+redText: {
+  color: colors.danger,
+  whiteSpace: "nowrap",   // IMPORTANT
+  display: "inline-block",
+},  
+
+  subtitle: {
+    fontSize: "18px",
+    lineHeight: 1.8,
+    color: colors.textSecondary,
+    marginBottom: "40px",
+  },
+
+  buttons: {
+    display: "flex",
+    gap: "18px",
+    flexWrap: "wrap",
+    marginBottom: "42px",
+  },
+
+  clients: {
+    display: "flex",
+    alignItems: "center",
+    gap: "18px",
+  },
+
+  avatarGroup: {
+    display: "flex",
+  },
+
+  avatar: {
+    width: "42px",
+    height: "42px",
+    borderRadius: "50%",
+    border: `3px solid ${colors.background}`,
+    marginLeft: "-10px",
+    objectFit: "cover",
+  },
+
+  clientTitle: {
+    fontWeight: 700,
+    fontSize: "18px",
+    color: colors.textPrimary,
+  },
+
+  clientSub: {
+    color: colors.textSecondary,
+    fontSize: "14px",
+  },
+
+  right: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    position: "relative",
+  },
+
+  heroImage: {
+    width: "100%",
+    maxWidth: "720px",
+    objectFit: "contain",
+    filter: "drop-shadow(0 30px 50px rgba(0,0,0,0.08))",
+  },
+
+  statsWrapper: {
+    position: "relative",
+    zIndex: 3,
+    display: "flex",
+    justifyContent: "center",
+    marginTop: "-30px",
+    marginBottom: "40px",
+  },
+
+  stats: {
+    background: colors.glass,
+    backdropFilter: "blur(24px)",
+    border: `1px solid ${colors.glassBorder}`,
+    borderRadius: "24px",
+    boxShadow: "0 20px 60px rgba(0,0,0,0.08)",
+    padding: "24px 40px",
+    display: "grid",
+    gridTemplateColumns: "repeat(4,1fr)",
+    gap: "40px",
+    minWidth: "900px",
+  },
+
+  statItem: {
+    display: "flex",
+    alignItems: "center",
+    gap: "14px",
+    color: colors.textPrimary,
+  },
+
+  statNumber: {
+    fontSize: "20px",
+    fontWeight: 700,
+    color: colors.textPrimary,
+  },
+
+  statLabel: {
+    fontSize: "13px",
+    color: colors.textMuted,
+  },
+};

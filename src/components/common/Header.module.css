@@ -1,57 +1,166 @@
+/* =========================
+   HEADER
+========================= */
+
 .header {
   position: sticky;
   top: 0;
-  z-index: 100;
-  background: var(--color-background);
+  z-index: 999;
+  background: #fff;
+  transition: all 0.3s ease;
 }
 
-.header.scrolled {
-  box-shadow: var(--shadow-sm);
+.scrolled {
+  box-shadow: 0 10px 40px rgba(2, 6, 23, 0.08);
 }
 
+/* Hide old top bar */
 .topBar {
-  background: var(--color-surface-dark);
-  color: var(--color-on-dark);
-  height: var(--header-top-height);
+  display: none;
+}
+
+/* =========================
+   MAIN NAVBAR
+========================= */
+
+.mainBar {
+  height: 92px;
+  background: #fff;
+  border-bottom: 1px solid rgba(226, 232, 240, 0.7);
   display: flex;
   align-items: center;
+  margin-Right:150px;
 }
 
-.topInner {
+.mainInner {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 100%;
-  font-size: 0.8125rem;
+  gap: 28px;
+  width: 100%;
 }
 
-.topLeft {
+/* =========================
+   LOGO
+========================= */
+
+.logo {
+  flex-shrink: 0;
   display: flex;
   align-items: center;
-  gap: 0.75rem;
 }
 
-.topLink {
-  display: inline-flex;
+.logoImage {
+  width: 260px;
+  height: auto;
+  object-fit: contain;
+}
+
+/* =========================
+   DESKTOP NAV
+========================= */
+
+.nav {
+  display: none;
   align-items: center;
-  gap: 0.375rem;
-  color: var(--color-on-dark-muted);
-  transition: color var(--transition);
+  gap: 4px;
+  flex: 1;
+  justify-content: center;
 }
 
-.topLink:hover {
-  color: var(--color-on-dark);
+.navLink {
+  position: relative;
+  padding: 10px 14px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #1e293b;
+  border-radius: 10px;
+  transition: all 0.25s ease;
+  white-space: nowrap;
 }
 
-.topDivider {
-  opacity: 0.3;
+.navLink:hover {
+  color: #0b2b66;
 }
 
-.topRight {
+.active {
+  color: #0b2b66;
+  font-weight: 600;
+}
+
+.active::after {
+  content: "";
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: -8px;
+  height: 3px;
+  background: #ef4444;
+  border-radius: 999px;
+}
+
+/* =========================
+   RIGHT SIDE
+========================= */
+
+.headerRight {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 18px;
+  flex-shrink: 0;
 }
+
+.phoneLink {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #0f172a;
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.phoneLink:hover {
+  color: #0b2b66;
+}
+
+.phoneIcon {
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  border: 1px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ef4444;
+  background: white;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
+}
+
+.headerCta {
+  height: 48px;
+  padding: 0 28px;
+  border-radius: 14px;
+  background: #0b2b66;
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.headerCta:hover {
+  transform: translateY(-2px);
+  background: #09245a;
+  box-shadow: 0 12px 30px rgba(11, 43, 102, 0.25);
+}
+
+/* =========================
+   LANGUAGE DROPDOWN
+========================= */
 
 .langWrap {
   position: relative;
@@ -60,18 +169,12 @@
 .langBtn {
   display: inline-flex;
   align-items: center;
-  gap: 0.375rem;
-  padding: 0.25rem 0.5rem;
-  font-size: 0.8125rem;
-  color: var(--color-on-dark-muted);
+  gap: 6px;
+  padding: 6px 10px;
+  font-size: 13px;
   background: none;
   border: none;
   cursor: pointer;
-  transition: color var(--transition);
-}
-
-.langBtn:hover {
-  color: var(--color-on-dark);
 }
 
 .chevronOpen {
@@ -80,13 +183,13 @@
 
 .langDropdown {
   position: absolute;
-  top: calc(100% + 0.5rem);
+  top: calc(100% + 8px);
   right: 0;
   min-width: 120px;
-  background: var(--color-background);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-md);
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.1);
   overflow: hidden;
   z-index: 300;
 }
@@ -94,172 +197,78 @@
 .langOption {
   display: block;
   width: 100%;
-  padding: 0.625rem 1rem;
+  padding: 12px 16px;
   text-align: left;
-  font-size: 0.875rem;
-  color: var(--color-text-primary);
+  font-size: 14px;
+  color: #0f172a;
   background: none;
   border: none;
   cursor: pointer;
-  transition: background var(--transition);
+  transition: all 0.2s ease;
 }
 
 .langOption:hover,
 .langActive {
-  background: var(--color-surface);
-  color: var(--color-primary);
+  background: #f8fafc;
+  color: #0b2b66;
 }
 
-.topCta {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.375rem 1rem;
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  color: var(--color-on-dark);
-  background: var(--color-gradient-primary);
-  border-radius: 999px;
-  transition: opacity var(--transition), transform var(--transition);
-  white-space: nowrap;
-}
-
-.topCta:hover {
-  opacity: 0.92;
-  transform: translateY(-1px);
-}
-
-.mainBar {
-  height: var(--header-main-height);
-  display: flex;
-  align-items: center;
-  border-bottom: 1px solid var(--color-border);
-  background: var(--color-background);
-}
-
-.mainInner {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-  width: 100%;
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 1.25rem;
-  font-weight: 800;
-  color: var(--color-text-primary);
-  flex-shrink: 0;
-  letter-spacing: -0.02em;
-}
-
-.logoIcon {
-  display: flex;
-  align-items: center;
-}
-
-.logoAccent {
-  color: var(--color-primary);
-}
-
-.nav {
-  display: none;
-  align-items: center;
-  gap: 0.125rem;
-  flex: 1;
-  justify-content: center;
-}
-
-.navLink {
-  padding: 0.5rem 0.75rem;
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: var(--color-text-primary);
-  border-radius: var(--radius-sm);
-  transition: color var(--transition), background var(--transition);
-  white-space: nowrap;
-}
-
-.navLink:hover,
-.navLink.active {
-  color: var(--color-primary);
-  background: var(--color-surface);
-}
-
-.phoneLink {
-  display: none;
-  font-size: 0.9375rem;
-  font-weight: 700;
-  color: var(--color-text-primary);
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-
-.phoneLink:hover {
-  color: var(--color-primary);
-}
+/* =========================
+   MOBILE MENU
+========================= */
 
 .menuBtn {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   margin-left: auto;
-  background: none;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-sm);
-  color: var(--color-text-primary);
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  color: #0f172a;
   cursor: pointer;
 }
 
 .mobileNav {
   display: flex;
   flex-direction: column;
-  padding: 0 1.25rem 1.5rem;
-  background: var(--color-background);
-  border-bottom: 1px solid var(--color-border);
-  max-height: calc(100vh - var(--header-top-height) - var(--header-main-height));
+  padding: 0 24px 24px;
+  background: white;
+  border-bottom: 1px solid #e2e8f0;
+  max-height: calc(100vh - 92px);
   overflow-y: auto;
 }
 
 .mobileNavLink {
-  padding: 1rem 0;
-  font-size: 1rem;
+  padding: 16px 0;
+  font-size: 16px;
   font-weight: 600;
-  color: var(--color-text-primary);
-  border-bottom: 1px solid var(--color-border);
+  color: #0f172a;
+  border-bottom: 1px solid #e2e8f0;
 }
 
 .mobileCta {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 1rem;
-  padding: 0.875rem 1.5rem;
-  font-size: 0.875rem;
+  margin-top: 20px;
+  padding: 14px 24px;
+  font-size: 14px;
   font-weight: 700;
-  letter-spacing: 0.04em;
-  color: var(--color-on-dark);
-  background: var(--color-gradient-primary);
+  color: white;
+  background: #0b2b66;
   border-radius: 999px;
 }
 
-@media (min-width: 768px) {
-  .topLeft {
-    gap: 1rem;
-  }
-}
+/* =========================
+   RESPONSIVE
+========================= */
 
 @media (min-width: 1024px) {
   .nav {
     display: flex;
-  }
-
-  .phoneLink {
-    display: block;
   }
 
   .menuBtn {
@@ -271,24 +280,27 @@
   }
 }
 
-@media (max-width: 767px) {
-  .topLink span,
-  .topDivider {
+@media (max-width: 1024px) {
+  .headerCta,
+  .phoneLink {
     display: none;
   }
 
-  .topLink {
-    font-size: 0.75rem;
-  }
-
-  .topCta {
-    padding: 0.3rem 0.75rem;
-    font-size: 0.6875rem;
+  .logoImage {
+    width: 190px;
   }
 }
 
-@media (max-width: 480px) {
-  .topLeft a:first-child {
-    display: none;
+@media (max-width: 768px) {
+  .mainBar {
+    height: 80px;
+  }
+
+  .mainInner {
+    gap: 16px;
+  }
+
+  .logoImage {
+    width: 170px;
   }
 }
