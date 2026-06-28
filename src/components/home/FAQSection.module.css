@@ -1,4 +1,4 @@
- .section {
+.section {
   padding: 100px 0;
   background: white;
   overflow: hidden;
@@ -116,7 +116,7 @@
   z-index: 10;
 }
 .contactIcon {
-  width: 60px;   /* 72px -> 60px */
+  width: 60px;
   height: 60px;
 
   border-radius: 50%;
@@ -131,7 +131,7 @@
 }
 
 .contactCard h4 {
-  font-size: 18px;   /* 28px -> 18px */
+  font-size: 18px;
   font-weight: 700;
   color: #08164d;
   margin-bottom: 4px;
@@ -147,7 +147,7 @@
 .contactCard a {
   color: #ff1d12;
   font-weight: 700;
-  font-size: 16px;   /* 22px -> 16px */
+  font-size: 16px;
 }
 .badgeIcon {
   width: 30px;
@@ -188,14 +188,14 @@
 
   display: flex;
   align-items: center;
-  justify-content: flex-start; /* NEW */
+  justify-content: flex-start;
 
   gap: 22px;
 
   border: none;
   background: transparent;
   cursor: pointer;
-  text-align: left; /* NEW */
+  text-align: left;
 }
 
 .iconBox {
@@ -225,8 +225,8 @@
   font-weight: 700;
   color: #07195c;
 
-  text-align: left;      /* NEW */
-  margin-left: 8px;      /* optional spacing */
+  text-align: left;
+  margin-left: 8px;
 
   white-space: nowrap;
   overflow: hidden;
@@ -250,53 +250,135 @@
     grid-template-columns: 1fr;
   }
 
-.leftSide {
-  position: sticky;
-  top: 120px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+  .leftSide {
+    position: sticky;
+    top: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
   .questionText {
     white-space: normal;
   }
 }
 
+/* ─── MOBILE ─────────────────────────────────────────────── */
 @media (max-width: 768px) {
   .section {
-    padding: 80px 0;
+    padding: 60px 0 80px;
+  }
+
+  .heading {
+    margin-top: 0;
+    margin-bottom: 36px;
+    padding: 0 16px;
+  }
+
+  .badge {
+    font-size: 15px;
+    padding: 10px 18px;
   }
 
   .title {
-    font-size: 48px;
+    font-size: 32px;
+    line-height: 1.2;
   }
 
   .subtitle,
   .contactText {
-    font-size: 18px;
+    font-size: 16px;
   }
 
-.contactCard {
-    position: relative;
-    left: unset;
-    bottom: unset;
-    transform: none;
+  /* ── wrapper: single column, no gap between image area and list ── */
+  .wrapper {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
 
-    width: 100%;
-    margin-top: -40px;
+  /* ── left side: un-stick, let it flow normally ── */
+  .leftSide {
+    position: relative;
+    top: unset;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* reserve room at the bottom for the card that sits below the image */
+    padding-bottom: 110px;
+  }
+
+  /* ── student image: narrower so the card has space ── */
+  .student {
+    width: 70%;
+    max-width: 260px;
+    transform: none;
+  }
+
+  /* ── contact card: pull it out of absolute flow, sit below image ── */
+  .contactCard {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+
+    width: calc(100% - 32px);
+    max-width: 340px;
+    margin: 0;
+  }
+
+  /* ── FAQ list: add horizontal padding so cards don't touch edges ── */
+  .list {
+    padding: 0 16px;
+    gap: 16px;
+    margin-top: 24px;
+  }
+
+  /* ── accordion items ── */
+  .item {
+    border-radius: 18px;
   }
 
   .question {
-    padding: 22px;
+    padding: 18px 16px;
+    gap: 14px;
+  }
+
+  .iconBox {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
   }
 
   .questionText {
-    font-size: 18px;
+    font-size: 16px;
+    font-weight: 700;
     white-space: normal;
+    margin-left: 0;
   }
 
   .answerWrap p {
-    padding: 0 24px 24px 24px;
+    padding: 0 16px 20px 16px;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+}
+
+/* ─── VERY SMALL PHONES (≤ 375px) ───────────────────────── */
+@media (max-width: 375px) {
+  .title {
+    font-size: 28px;
+  }
+
+  .badge {
+    font-size: 13px;
+    padding: 8px 14px;
+  }
+
+  .student {
+    width: 65%;
+  }
+
+  .questionText {
+    font-size: 15px;
   }
 }

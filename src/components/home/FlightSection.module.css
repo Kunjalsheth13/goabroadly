@@ -1,5 +1,5 @@
 .section {
-  padding: 0 0;
+  padding: 0;
   overflow: hidden;
 }
 
@@ -8,30 +8,34 @@
   margin-left: calc(50% - 50vw);
 }
 
+/* ── Shared card base ── */
 .card {
   position: relative;
-
   width: 100%;
-  min-height: 900px;
-
   overflow: hidden;
-
   background-repeat: no-repeat;
-
-  /* EXACTLY AS YOUR IMAGE */
-  background-size: 100% 100%;
-  background-position: center center;
-
   background-color: #ffffff;
 }
 
+/* ── Desktop card (shown on ≥769px) ── */
+.cardDesktop {
+  display: block;
+  min-height: 900px;
+  background-size: 100% 100%;
+  background-position: center center;
+}
+
+/* ── Mobile card (hidden on ≥769px) ── */
+.cardMobile {
+  display: none;
+}
+
+/* ── Desktop content layout ── */
 .content {
   position: relative;
   z-index: 2;
-
   max-width: 1440px;
   margin: 0 auto;
-
   min-height: 900px;
 }
 
@@ -40,39 +44,39 @@
   padding: 4rem 3rem;
 }
 
+/* ── Mobile content layout ── */
+.contentMobile {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 2.25rem 1.5rem 3rem;
+}
+
+/* ── Badge ── */
 .badge {
   width: fit-content;
-
   display: inline-flex;
   align-items: center;
   gap: 0.65rem;
-
   padding: 0.75rem 1.15rem;
-
   border-radius: 999px;
-
   background: rgba(255, 255, 255, 0.96);
-
   border: 1px solid var(--color-border);
-
   color: var(--color-primary);
-
   font-size: 0.9rem;
   font-weight: 700;
-
   margin-bottom: 1.75rem;
 }
 
+/* ── Title ── */
 .title {
   margin: 0 0 1.25rem;
-
-  /* Figma-like size */
   font-size: clamp(2.4rem, 3.2vw, 3.8rem);
-
   font-weight: 800;
   line-height: 1.08;
   letter-spacing: -0.03em;
-
   color: var(--color-primary);
 }
 
@@ -80,57 +84,32 @@
   color: var(--color-danger);
 }
 
+/* ── Description ── */
 .description {
   max-width: 400px;
-
   margin-bottom: 1.75rem;
-
   color: var(--color-text-secondary);
-
   font-size: 0.95rem;
   line-height: 1.7;
 }
-.features {
-  gap: 1rem;
-}
 
-.feature h4 {
-  font-size: 0.95rem;
-}
+/* ── Icon wrapper ── */
 .iconWrapper {
   width: 56px;
   height: 56px;
-
   flex-shrink: 0;
-
   border-radius: 50%;
-
   background: #ffffff;
-
   border: 1px solid var(--color-border);
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   color: var(--color-danger);
 }
 
-.feature h4 {
-  margin: 0 0 0.35rem;
-
-  font-size: 1rem;
-  font-weight: 700;
-
-  color: var(--color-primary);
-}
-
-.feature p {
-  font-size: 0.85rem;
-}
-
+/* ── Tablet breakpoint ── */
 @media (max-width: 1200px) {
-  .card {
+  .cardDesktop {
     min-height: 700px;
     background-size: cover;
   }
@@ -142,38 +121,53 @@
   .left {
     width: 100%;
     max-width: 600px;
-
     background: rgba(255, 255, 255, 0.92);
     backdrop-filter: blur(10px);
   }
 }
 
+/* ── Mobile breakpoint ── */
 @media (max-width: 768px) {
   .section {
-    padding: 24px 0;
+    padding: 0;
   }
 
-  .card {
-    min-height: 650px;
+  /* Hide desktop card, show mobile card */
+  .cardDesktop {
+    display: none;
+  }
 
+  .cardMobile {
+    display: block;
+    /* Let the image dictate height naturally; set a min so it never collapses */
+    min-height: 580px;
     background-size: cover;
-    background-position: center;
+    background-position: center top;
   }
 
-  .content {
-    min-height: 650px;
-  }
-
-  .left {
-    width: 100%;
-    padding: 2rem 1.5rem;
-  }
-
+  /* Mobile typography tweaks */
   .title {
-    font-size: 2.3rem;
+    font-size: 2.1rem;
+    line-height: 1.12;
   }
 
   .description {
-    font-size: 1rem;
+    font-size: 0.95rem;
+    max-width: 100%;
+  }
+
+  .badge {
+    font-size: 0.82rem;
+    padding: 0.6rem 1rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .contentMobile {
+    padding: 1.75rem 1.25rem 2.5rem;
+  }
+
+  .title {
+    font-size: 1.85rem;
   }
 }

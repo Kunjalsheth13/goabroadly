@@ -35,7 +35,7 @@
   text-rendering: geometricPrecision;
 }
 .taglineBlue {
-  color: #0b2b66; /* Dark Navy Blue */
+  color: #0b2b66;
 }
 
 .taglineRed {
@@ -189,6 +189,7 @@
   color: #64748b;
   line-height: 1.7;
 }
+
 .bottomGrid {
   display: grid;
   grid-template-columns: 1.2fr 0.7fr 1.3fr;
@@ -264,8 +265,8 @@
 }
 
 .affiliations img {
-  width: 95px;
-  height: 42px;
+  width: 110px;
+  height: 48px;
   object-fit: contain;
 }
 
@@ -273,19 +274,20 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 24px;
+  gap: 32px;
   padding-top: 24px;
+  flex-wrap: nowrap;
 }
 
 .bottomLogo {
-  width: 180px;
+  width: 150px;
   height: auto;
   flex-shrink: 0;
 }
 
 .copyrightText {
   color: #64748b;
-  font-size: 14px;
+  font-size: 13px;
   white-space: nowrap;
   flex-shrink: 0;
 }
@@ -293,14 +295,15 @@
 .legalLinks {
   display: flex;
   align-items: center;
-  gap: 18px;
+  gap: 20px;
+  flex-wrap: nowrap;
   white-space: nowrap;
 }
 
 .legalLinks a {
-  color: #64748b;
-  font-size: 14px;
   position: relative;
+  color: #64748b;
+  font-size: 13px;
   transition: 0.25s;
 }
 
@@ -310,9 +313,12 @@
 
 .legalLinks a:not(:last-child)::after {
   content: "|";
+  position: absolute;
+  right: -12px;
   color: #ef4444;
-  margin-left: 18px;
 }
+
+/* ─── TABLET (max 1200px) ─────────────────────────────────────── */
 
 @media (max-width: 1200px) {
   .topGrid,
@@ -342,85 +348,239 @@
     flex-wrap: wrap;
     justify-content: center;
   }
-}.affiliations img {
-  width: 110px;
-  height: 48px;
-  object-fit: contain;
 }
 
-.copyrightText {
-  color: #64748b;
-  font-size: 13px;
-  white-space: nowrap;
-}
-.bottomLogo {
-  width: 150px;
-  flex-shrink: 0;
-}
-.copyrightText {
-  flex-shrink: 0;
-}
-.legalLinks {
-  display: flex;
-  gap: 18px;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-}
-/* .bottomLogo {
-  width: 180px;
-  height: auto;
-} */
+/* ─── MOBILE (max 768px) ──────────────────────────────────────── */
 
-.copyright span {
-  font-size: 14px;
-  color: #64748b;
-}
+@media (max-width: 768px) {
+  .footer {
+    padding: 36px 0 24px;
+  }
 
-.legalLinks a {
-  color: #64748b;
-}
+  /* ── Top grid: remove gap so sections use their own padding/dividers */
+  .topGrid {
+    gap: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+  }
 
-@media (max-width: 1200px) {
-  .topGrid,
-  .bottomGrid,
+  /* Divider between each section inside topGrid */
+  .topGrid > div:not(:first-child) {
+    border-top: 1px solid #ececec;
+    padding-top: 4px;
+  }
+
+  /* ── Brand column ───────────────────────────────────────────── */
+  .brandColumn {
+    max-width: 100%;
+    padding-bottom: 28px;
+    border-bottom: 1px solid #ececec;
+    margin-bottom: 4px;
+  }
+
+  .logo {
+    width: 180px;
+    margin-left: -14px;
+    margin-bottom: -20px;
+  }
+
+  .tagline {
+    font-size: 22px;
+    margin-top: 14px;
+    white-space: normal;
+  }
+
+  .description {
+    font-size: 14px;
+    margin-top: 14px;
+  }
+
+  .googleBox {
+    margin-top: 24px;
+    padding: 14px;
+    background: #fff;
+    border: 1px solid #ececec;
+    border-radius: 14px;
+  }
+
+  .googleIcon {
+    width: 44px;
+    height: 44px;
+    font-size: 22px;
+  }
+
+  .rating {
+    font-size: 20px;
+    gap: 8px;
+  }
+
+  /* ── Section headings ───────────────────────────────────────── */
+  .heading {
+    font-size: 18px;
+    margin-top: 28px;
+    margin-bottom: 20px;
+  }
+
+  /* ── Quick links: 2-column grid ─────────────────────────────── */
+  .topGrid > div:nth-child(2) .list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 8px;
+  }
+
+  /* ── Destinations: 2-column grid ────────────────────────────── */
+  .topGrid > div:nth-child(3) .list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 8px;
+  }
+
+  /* ── Services: 2-column grid ─────────────────────────────────── */
+  .topGrid > div:nth-child(4) .list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 8px;
+  }
+
+  .list li {
+    gap: 8px;
+    font-size: 14px;
+  }
+
+  /* ── Contact ────────────────────────────────────────────────── */
+  .contactItem {
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  /* ── Stats: 2×2 card grid ───────────────────────────────────── */
   .statsSection {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 16px;
   }
 
   .statCard {
     border-right: none !important;
-    padding: 20px 0;
+    padding: 14px 10px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    background: #fff;
+    border: 1px solid #ececec;
+    border-radius: 12px;
   }
 
- .copyright {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 32px;
+  .statIcon {
+    width: 52px;
+    height: 52px;
+  }
 
-  padding-top: 24px;
+  .statCard h3 {
+    font-size: 24px;
+  }
 
-  flex-wrap: nowrap;
-}
-.legalLinks {
-  display: flex;
-  align-items: center;
-  gap: 20px;
+  .statCard p {
+    font-size: 12px;
+    line-height: 1.5;
+  }
 
-  flex-wrap: nowrap;
-  white-space: nowrap;
-}
+  /* ── Bottom grid: stack vertically with dividers ─────────────── */
+  .bottomGrid {
+    grid-template-columns: 1fr;
+    gap: 0;
+    padding: 0;
+    border-bottom: none;
+  }
 
-.legalLinks a {
-  position: relative;
-  color: #64748b;
-  font-size: 13px;
-}
+  .bottomGrid > div {
+    padding: 20px 0;
+    border-top: 1px solid #ececec;
+  }
 
-.legalLinks a:not(:last-child)::after {
-  content: "|";
-  position: absolute;
-  right: -12px;
-  color: #ef4444;
-}
+  .smallText {
+    font-size: 14px;
+  }
+
+  /* ── Subscribe box: full width ───────────────────────────────── */
+  .subscribeBox {
+    max-width: 100%;
+    margin-top: 16px;
+  }
+
+  .subscribeBox input {
+    height: 48px;
+    font-size: 14px;
+    padding: 0 12px;
+  }
+
+  .subscribeBox button {
+    width: 100px;
+    font-size: 14px;
+  }
+
+  /* ── Socials ─────────────────────────────────────────────────── */
+  .socials {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .socials a {
+    width: 40px;
+    height: 40px;
+  }
+
+  /* ── Affiliations: 2×2 grid ─────────────────────────────────── */
+  .affiliations {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    justify-items: center;
+    flex-wrap: unset;
+  }
+
+  .affiliations img {
+    width: 100%;
+    max-width: 140px;
+    height: 44px;
+  }
+
+  /* ── Copyright: centered stack ───────────────────────────────── */
+  .copyright {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 12px;
+    padding-top: 20px;
+    border-top: 1px solid #ececec;
+    margin-top: 8px;
+    flex-wrap: wrap;
+  }
+
+  .bottomLogo {
+    width: 140px;
+  }
+
+  .copyrightText {
+    white-space: normal;
+    font-size: 12px;
+  }
+
+  .legalLinks {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px 14px;
+    white-space: normal;
+  }
+
+  .legalLinks a {
+    font-size: 12px;
+  }
+
+  /* Remove pseudo | separators on mobile (they break when links wrap) */
+  .legalLinks a:not(:last-child)::after {
+    display: none;
+  }
 }

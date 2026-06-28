@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import {
-  
   ShieldCheck,
   ArrowRight,
   Target,
@@ -61,10 +60,10 @@ const bottomFeatures: {
     desc: "Proven track record of student success",
   },
   {
-  icon: FaGlobeAmericas,
-  title: "Global Network",
-  desc: "Strong connections worldwide",
-},
+    icon: FaGlobeAmericas,
+    title: "Global Network",
+    desc: "Strong connections worldwide",
+  },
 ];
 
 export default function ServicesGrid() {
@@ -80,19 +79,19 @@ export default function ServicesGrid() {
       <div className="container">
         <FadeIn>
           <div className={styles.header}>
-  <div className={styles.eyebrowWrap}>
-    <span className={styles.plane}>✈</span>
+            <div className={styles.eyebrowWrap}>
+              <span className={styles.plane}>✈</span>
 
-    <div className={styles.eyebrow}>
-      <span className={styles.line} />
-      <span className={styles.eyebrowText}>What We Offer</span>
-      <span className={styles.line} />
-    </div>
-  </div>
+              <div className={styles.eyebrow}>
+                <span className={styles.line} />
+                <span className={styles.eyebrowText}>What We Offer</span>
+                <span className={styles.line} />
+              </div>
+            </div>
 
-  <h2 className={styles.title}>
-    Comprehensive <span>Services</span>
-  </h2>
+            <h2 className={styles.title}>
+              Comprehensive <span>Services</span>
+            </h2>
 
             <p className={styles.subtitle}>
               End-to-end support crafted for ambitious students pursuing
@@ -103,8 +102,8 @@ export default function ServicesGrid() {
 
         <div className={styles.grid}>
           {featured.map((service, index) => {
-          const Icon =
-  iconMap[service.slug as keyof typeof iconMap] || FaGlobeAmericas;
+            const Icon =
+              iconMap[service.slug as keyof typeof iconMap] || FaGlobeAmericas;
 
             return (
               <FadeIn key={service.slug} delay={index * 0.08}>
@@ -117,8 +116,9 @@ export default function ServicesGrid() {
                   </span>
 
                   <div className={styles.iconWrap}>
-  <Icon size={24} />
-</div>
+                    <Icon size={24} />
+                  </div>
+
                   <h3>{service.title}</h3>
 
                   <p>

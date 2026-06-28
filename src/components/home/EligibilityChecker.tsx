@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   GraduationCap,
   Headphones,
@@ -25,13 +25,19 @@ export default function EligibilityChecker() {
   const [qualification, setQualification] = useState("");
   const [ielts, setIelts] = useState("");
   const [offer, setOffer] = useState("");
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth <= 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
 
   return (
     <section
       className={styles.section}
-      style={{
-        backgroundImage: `url(${eligibilityBg.src})`,
-      }}
+      style={!isMobile ? { backgroundImage: `url(${eligibilityBg.src})` } : undefined}
     >
       <div className="container">
         <FadeIn>
@@ -59,9 +65,8 @@ export default function EligibilityChecker() {
               <div className={styles.featuresCard}>
                 <div className={styles.feature}>
                   <div className={styles.iconCircle}>
-                  <ScrollText size={24} strokeWidth={2.2} />
+                    <ScrollText size={24} strokeWidth={2.2} />
                   </div>
-
                   <div>
                     <h4>Quick & Easy</h4>
                     <p>Get result in less than a minute</p>
@@ -70,9 +75,8 @@ export default function EligibilityChecker() {
 
                 <div className={styles.feature}>
                   <div className={styles.iconCircle}>
-                  <Shield size={24} strokeWidth={2.2} />
+                    <Shield size={24} strokeWidth={2.2} />
                   </div>
-
                   <div>
                     <h4>100% Free</h4>
                     <p>No hidden charges. Completely free to check.</p>
@@ -83,7 +87,6 @@ export default function EligibilityChecker() {
                   <div className={styles.iconCircle}>
                     <ShieldCheck size={24} strokeWidth={2.2} />
                   </div>
-
                   <div>
                     <h4>Secure & Private</h4>
                     <p>Your information is safe with us.</p>
@@ -92,9 +95,8 @@ export default function EligibilityChecker() {
 
                 <div className={styles.feature}>
                   <div className={styles.iconCircle}>
-                  <ChartNoAxesColumnIncreasing size={24} />
+                    <ChartNoAxesColumnIncreasing size={24} />
                   </div>
-
                   <div>
                     <h4>Expert Guidance</h4>
                     <p>We're here to help you at every step.</p>
@@ -117,12 +119,10 @@ export default function EligibilityChecker() {
 
               <div className={styles.field}>
                 <label>Qualifications of Student</label>
-
                 <div className={styles.inputWrapper}>
                   <div className={styles.inputIcon}>
                     <GraduationCap size={24} />
                   </div>
-
                   <select
                     value={qualification}
                     onChange={(e) => setQualification(e.target.value)}
@@ -132,19 +132,16 @@ export default function EligibilityChecker() {
                     <option>Bachelor's</option>
                     <option>Master's</option>
                   </select>
-
                   <ChevronDown size={18} />
                 </div>
               </div>
 
               <div className={styles.field}>
                 <label>IELTS Overall Band</label>
-
                 <div className={styles.inputWrapper}>
                   <div className={styles.inputIcon}>
                     <Headphones size={24} />
                   </div>
-
                   <select value={ielts} onChange={(e) => setIelts(e.target.value)}>
                     <option>Select your IELTS band</option>
                     <option>5.5</option>
@@ -152,25 +149,21 @@ export default function EligibilityChecker() {
                     <option>6.5</option>
                     <option>7.0+</option>
                   </select>
-
                   <ChevronDown size={18} />
                 </div>
               </div>
 
               <div className={styles.field}>
                 <label>University Offer</label>
-
                 <div className={styles.inputWrapper}>
                   <div className={styles.inputIcon}>
                     <FilePen size={24} />
                   </div>
-
                   <select value={offer} onChange={(e) => setOffer(e.target.value)}>
                     <option>Do you have a university offer?</option>
                     <option>Yes</option>
                     <option>No</option>
                   </select>
-
                   <ChevronDown size={18} />
                 </div>
               </div>
