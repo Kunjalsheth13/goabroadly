@@ -4,11 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Phone, Mail, Globe, ChevronDown } from "lucide-react";
-import {
-  megaMenus,
-  simpleNavLinks,
-  languages,
-} from "@/constants/navigation";
+import { megaMenus, simpleNavLinks, languages } from "@/constants/navigation";
 import { siteConfig } from "@/constants/site";
 import MegaMenu from "./MegaMenu";
 import styles from "./Header.module.css";
@@ -36,16 +32,24 @@ export default function Header() {
   }, [pathname]);
 
   return (
-    <header className={`${styles.header} ${scrolled ? styles.scrolled : ""}`} role="banner">
+    <header
+      className={`${styles.header} ${scrolled ? styles.scrolled : ""}`}
+      role="banner"
+    >
       {/* Top bar */}
       <div className={styles.topBar}>
         <div className={`container ${styles.topInner}`}>
           <div className={styles.topLeft}>
-            <a href={`tel:${siteConfig.phone.replace(/\s/g, "")}`} className={styles.topLink}>
+            <a
+              href={`tel:${siteConfig.phone.replace(/\s/g, "")}`}
+              className={styles.topLink}
+            >
               <Phone size={13} aria-hidden="true" />
               {siteConfig.phone}
             </a>
-            <span className={styles.topDivider} aria-hidden="true">|</span>
+            <span className={styles.topDivider} aria-hidden="true">
+              |
+            </span>
             <a href={`mailto:${siteConfig.email}`} className={styles.topLink}>
               <Mail size={13} aria-hidden="true" />
               {siteConfig.email}
@@ -92,57 +96,48 @@ export default function Header() {
       {/* Main navbar */}
       <div className={styles.mainBar}>
         <div className={`container ${styles.mainInner}`}>
-        <Link href="/" className={styles.logo} aria-label="GoAbroadly Home">
-  <Image
-  src={logo}
-    alt="GoAbroadly"
-    width={260}
-    height={70}
-    priority
-    className={styles.logoImage}
-  />
-</Link>
+          <Link href="/" className={styles.logo} aria-label="GoAbroadly Home">
+            <Image
+              src={logo}
+              alt="GoAbroadly"
+              width={260}
+              height={70}
+              priority
+              className={styles.logoImage}
+            />
+          </Link>
 
-          <nav className={styles.nav} aria-label="Main navigation">
-            {megaMenus.map((menu) => (
-              <MegaMenu
-                key={menu.label}
-                menu={menu}
-                isOpen={openMenu === menu.label}
-                onOpen={() => setOpenMenu(menu.label)}
-                onClose={() => setOpenMenu(null)}
-              />
-            ))}
-            {simpleNavLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={`${styles.navLink} ${pathname === link.href || pathname.startsWith(link.href + "/") ? styles.active : ""}`}
-              >
-                {link.label}
-              </Link>
-            ))}
-          </nav>
+        <nav className={styles.nav} aria-label="Main navigation">
+  <Link href="/" className={`${styles.navLink} ${pathname === "/" ? styles.active : ""}`}>Home</Link>
+  <Link href="/about" className={`${styles.navLink} ${pathname === "/about" ? styles.active : ""}`}>About</Link>
+  {megaMenus.map((menu) => (
+    <MegaMenu
+      key={menu.label}
+      menu={menu}
+      isOpen={openMenu === menu.label}
+      onOpen={() => setOpenMenu(menu.label)}
+      onClose={() => setOpenMenu(null)}
+    />
+  ))}
+  <Link href="/blog" className={`${styles.navLink} ${pathname === "/blog" ? styles.active : ""}`}>Blog</Link>
+  <Link href="/contact" className={`${styles.navLink} ${pathname === "/contact" ? styles.active : ""}`}>Contact</Link>
+</nav>
+          <div className={styles.headerRight}>
+            <a
+              href={`tel:${siteConfig.phone.replace(/\s/g, "")}`}
+              className={styles.phoneLink}
+            >
+              <span className={styles.phoneIcon}>
+                <Phone size={14} />
+              </span>
 
-        <div className={styles.headerRight}>
-  <a
-    href={`tel:${siteConfig.phone.replace(/\s/g, "")}`}
-    className={styles.phoneLink}
-  >
-    <span className={styles.phoneIcon}>
-      <Phone size={14} />
-    </span>
+              {siteConfig.phone}
+            </a>
 
-    {siteConfig.phone}
-  </a>
-
-  <Link
-    href="/free-assessment"
-    className={styles.headerCta}
-  >
-    Book Free Consultation
-  </Link>
-</div>
+            <Link href="/free-assessment" className={styles.headerCta}>
+              Book Free Consultation
+            </Link>
+          </div>
           <button
             type="button"
             className={styles.menuBtn}
@@ -150,11 +145,27 @@ export default function Header() {
             aria-label={menuOpen ? "Close menu" : "Open menu"}
             aria-expanded={menuOpen}
           >
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              aria-hidden="true"
+            >
               {menuOpen ? (
-                <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                <path
+                  d="M6 6l12 12M18 6L6 18"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                />
               ) : (
-                <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                <path
+                  d="M4 7h16M4 12h16M4 17h16"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                />
               )}
             </svg>
           </button>
