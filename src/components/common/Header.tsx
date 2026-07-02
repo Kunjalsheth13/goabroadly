@@ -107,21 +107,41 @@ export default function Header() {
             />
           </Link>
 
-        <nav className={styles.nav} aria-label="Main navigation">
-  <Link href="/" className={`${styles.navLink} ${pathname === "/" ? styles.active : ""}`}>Home</Link>
-  <Link href="/about" className={`${styles.navLink} ${pathname === "/about" ? styles.active : ""}`}>About</Link>
-  {megaMenus.map((menu) => (
-    <MegaMenu
-      key={menu.label}
-      menu={menu}
-      isOpen={openMenu === menu.label}
-      onOpen={() => setOpenMenu(menu.label)}
-      onClose={() => setOpenMenu(null)}
-    />
-  ))}
-  <Link href="/blog" className={`${styles.navLink} ${pathname === "/blog" ? styles.active : ""}`}>Blog</Link>
-  <Link href="/contact" className={`${styles.navLink} ${pathname === "/contact" ? styles.active : ""}`}>Contact</Link>
-</nav>
+          <nav className={styles.nav} aria-label="Main navigation">
+            <Link
+              href="/"
+              className={`${styles.navLink} ${pathname === "/" ? styles.active : ""}`}
+            >
+              Home
+            </Link>
+            <Link
+              href="/about"
+              className={`${styles.navLink} ${pathname === "/about" ? styles.active : ""}`}
+            >
+              About
+            </Link>
+            {megaMenus.map((menu) => (
+              <MegaMenu
+                key={menu.label}
+                menu={menu}
+                isOpen={openMenu === menu.label}
+                onOpen={() => setOpenMenu(menu.label)}
+                onClose={() => setOpenMenu(null)}
+              />
+            ))}
+            <Link
+              href="/blog"
+              className={`${styles.navLink} ${pathname === "/blog" ? styles.active : ""}`}
+            >
+              Blog
+            </Link>
+            <Link
+              href="/contact"
+              className={`${styles.navLink} ${pathname === "/contact" ? styles.active : ""}`}
+            >
+              Contact
+            </Link>
+          </nav>
           <div className={styles.headerRight}>
             <a
               href={`tel:${siteConfig.phone.replace(/\s/g, "")}`}

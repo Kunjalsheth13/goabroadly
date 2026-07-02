@@ -1,251 +1,102 @@
 .footer {
-  background: #fdfdfd;
-  border-top: 1px solid #ececec;
-  padding: 70px 0 30px;
-  color: #0b2b66;
+  width: 100%;
+  background: #ffffff;
+  color: #0f172a;
+  border-top: 1px solid #e2e8f0;
 }
+
+.inner {
+  width: 100%;
+  padding: 64px 60px 0;
+}
+
+/* ─── TOP GRID ─────────────────────────────────────────────────── */
 
 .topGrid {
   display: grid;
-  grid-template-columns: 1.6fr 1fr 1fr 1fr 1.1fr;
-  gap: 40px;
-  padding-bottom: 50px;
-  border-bottom: 1px solid #ececec;
+  grid-template-columns: 1.6fr 0.9fr 0.9fr 0.9fr 1.2fr;
+  gap: 48px;
+  padding-bottom: 48px;
 }
+
+/* BRAND */
+
 .brandColumn {
-  max-width: 420px;
+  max-width: 340px;
 }
+
 .logo {
-  width: 240px;
+  width: 190px;
   height: auto;
   object-fit: contain;
-  margin-left: -19px;
-  margin-bottom: -30px;
+  margin-left: -14px;
 }
 
-.tagline {
-  margin-top: 18px;
-  font-size: 26px;
-  font-weight: 800;
-  line-height: 1;
-  white-space: nowrap;
-
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: geometricPrecision;
-}
-.taglineBlue {
-  color: #0b2b66;
-}
-
-.taglineRed {
-  color: #ef4444;
-}
 .description {
   margin-top: 18px;
-  color: #64748b;
-  line-height: 1.9;
-  font-size: 15px;
+  color: #475569;
+  line-height: 1.8;
+  font-size: 14px;
 }
 
 .googleBox {
-  margin-top: 40px;
+  margin-top: 24px;
   display: flex;
-  gap: 16px;
+  gap: 12px;
   align-items: center;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  padding: 12px 16px;
+  border-radius: 14px;
 }
 
 .googleIcon {
-  width: 56px;
-  height: 56px;
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
-  background: #fff;
-  border: 1px solid #ececec;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 28px;
+  font-size: 17px;
   font-weight: 800;
+  color: #0b2b66;
+  flex-shrink: 0;
 }
 
 .rating {
   display: flex;
-  gap: 10px;
+  gap: 6px;
   align-items: center;
-  font-size: 28px;
-  font-weight: 800;
+  font-size: 15px;
+  font-weight: 700;
+  color: #0f172a;
 }
 
 .rating span {
   display: flex;
-  gap: 4px;
+  gap: 2px;
 }
 
-.heading {
-  color: #0b2b66;
-  font-size: 22px;
-  font-weight: 800;
-  margin-bottom: 28px;
-  position: relative;
-}
-
-.heading::after {
-  content: "";
-  width: 42px;
-  height: 3px;
-  background: #ef4444;
-  position: absolute;
-  bottom: -10px;
-  left: 0;
-  border-radius: 100px;
-}
-
-.list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-}
-
-.list li {
-  display: flex;
-  gap: 12px;
-  align-items: center;
-}
-
-.list svg {
-  color: #ef4444;
-  flex-shrink: 0;
-}
-
-.list a {
-  color: #0b2b66;
-  transition: 0.25s;
-}
-
-.list a:hover {
-  color: #ef4444;
-}
-
-.contactItem {
-  display: flex;
-  gap: 16px;
-  margin-bottom: 28px;
-}
-
-.contactItem svg {
-  color: #ef4444;
-  margin-top: 3px;
-}
-
-.contactItem div {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.contactItem span {
-  color: #64748b;
-  font-size: 14px;
-}
-
-.statsSection {
-  margin: 40px 0;
-  padding: 35px;
-  border: 1px solid #ececec;
-  border-radius: 24px;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-}
-
-.statCard {
-  display: flex;
-  gap: 18px;
-  align-items: center;
-  padding: 0 24px;
-}
-
-.statCard:not(:last-child) {
-  border-right: 1px solid #ececec;
-}
-
-.statIcon {
-  width: 72px;
-  height: 72px;
-  border-radius: 50%;
-  background: rgba(239, 68, 68, 0.08);
-  color: #ef4444;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.statCard h3 {
-  font-size: 34px;
-  font-weight: 800;
-}
-
-.statCard p {
-  color: #64748b;
-  line-height: 1.7;
-}
-
-.bottomGrid {
-  display: grid;
-  grid-template-columns: 1.2fr 0.7fr 1.3fr;
-  gap: 48px;
-  padding: 32px 0;
-  border-bottom: 1px solid #ececec;
-  align-items: start;
-}
-
-.smallText {
-  color: #64748b;
-  line-height: 1.8;
-}
-
-.subscribeBox {
-  margin-top: 22px;
-  display: flex;
-  max-width: 420px;
-}
-
-.subscribeBox input {
-  flex: 1;
-  height: 54px;
-  border: 1px solid #e2e8f0;
-  border-right: none;
-  padding: 0 20px;
-  border-radius: 12px 0 0 12px;
-  font-size: 15px;
-  outline: none;
-}
-
-.subscribeBox button {
-  width: 140px;
-  border: none;
-  background: #ef4444;
-  color: #fff;
-  font-weight: 700;
-  border-radius: 0 12px 12px 0;
-  cursor: pointer;
-  transition: 0.25s;
-}
-
-.subscribeBox button:hover {
-  background: #dc2626;
+.googleBox p {
+  color: #94a3b8;
+  font-size: 12px;
+  margin-top: 2px;
 }
 
 .socials {
+  margin-top: 22px;
   display: flex;
-  gap: 14px;
+  gap: 10px;
 }
 
 .socials a {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: #fff5f5;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -254,333 +105,271 @@
 }
 
 .socials a:hover {
-  color: #ef4444;
+  background: #ef4444;
+  border-color: #ef4444;
+  color: #fff;
   transform: translateY(-2px);
+}
+
+/* LINK COLUMNS */
+
+.heading {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: #0b2b66;
+  margin-bottom: 22px;
+}
+
+.list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.list a {
+  color: #475569;
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+.list a:hover {
+  color: #ef4444;
+  padding-left: 3px;
+}
+
+/* CONTACT COLUMN */
+
+.contactColumn {
+  min-width: 260px;
+}
+
+.contactItem {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+
+.contactItem svg {
+  color: #ef4444;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.contactItem span {
+  color: #475569;
+  font-size: 13.5px;
+  line-height: 1.55;
+}
+
+.newsletterLabel {
+  margin-top: 20px;
+  color: #94a3b8;
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+
+.subscribeBox {
+  display: flex;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 4px;
+}
+
+.subscribeBox input {
+  flex: 1;
+  min-width: 0;
+  background: transparent;
+  border: none;
+  padding: 10px 12px;
+  font-size: 13px;
+  color: #0f172a;
+  outline: none;
+}
+
+.subscribeBox input::placeholder {
+  color: #94a3b8;
+}
+
+.subscribeBox button {
+  width: 38px;
+  height: 38px;
+  border: none;
+  background: #ef4444;
+  color: #fff;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: 0.25s;
+}
+
+.subscribeBox button:hover {
+  background: #dc2626;
+}
+
+/* ─── BOTTOM BAR ───────────────────────────────────────────────── */
+
+.bottomBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 24px 0;
+  border-top: 1px solid #e2e8f0;
+  flex-wrap: wrap;
+}
+
+.copyrightText {
+  color: #94a3b8;
+  font-size: 13px;
+  white-space: nowrap;
 }
 
 .affiliations {
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 18px;
 }
 
 .affiliations img {
-  width: 110px;
-  height: 48px;
+  width: 78px;
+  height: 32px;
   object-fit: contain;
+  opacity: 0.7;
+  filter: grayscale(1);
+  transition: 0.25s;
 }
 
-.copyright {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 32px;
-  padding-top: 24px;
-  flex-wrap: nowrap;
-}
-
-.bottomLogo {
-  width: 150px;
-  height: auto;
-  flex-shrink: 0;
-}
-
-.copyrightText {
-  color: #64748b;
-  font-size: 13px;
-  white-space: nowrap;
-  flex-shrink: 0;
+.affiliations img:hover {
+  opacity: 1;
+  filter: grayscale(0);
 }
 
 .legalLinks {
   display: flex;
   align-items: center;
   gap: 20px;
-  flex-wrap: nowrap;
-  white-space: nowrap;
+  flex-wrap: wrap;
 }
 
 .legalLinks a {
-  position: relative;
-  color: #64748b;
+  color: #94a3b8;
   font-size: 13px;
-  transition: 0.25s;
+  transition: 0.2s;
 }
 
 .legalLinks a:hover {
   color: #ef4444;
 }
 
-.legalLinks a:not(:last-child)::after {
-  content: "|";
-  position: absolute;
-  right: -12px;
-  color: #ef4444;
-}
-
 /* ─── TABLET (max 1200px) ─────────────────────────────────────── */
 
 @media (max-width: 1200px) {
-  .topGrid,
-  .bottomGrid,
-  .statsSection {
-    grid-template-columns: 1fr;
+  .inner {
+    padding: 56px 32px 0;
   }
 
-  .statCard {
-    border-right: none !important;
-    padding: 20px 0;
+  .topGrid {
+    grid-template-columns: 1fr 1fr 1fr;
+    row-gap: 40px;
   }
 
-  .copyright {
-    flex-direction: column;
+  .brandColumn {
+    max-width: 100%;
+    grid-column: span 3;
+  }
+
+  .contactColumn {
+    grid-column: span 3;
+    max-width: 420px;
+  }
+
+  .bottomBar {
+    justify-content: center;
     text-align: center;
-    gap: 16px;
-  }
-
-  .legalLinks {
-    flex-wrap: wrap;
-    justify-content: center;
-    white-space: normal;
-  }
-
-  .affiliations {
-    flex-wrap: wrap;
-    justify-content: center;
   }
 }
 
 /* ─── MOBILE (max 768px) ──────────────────────────────────────── */
 
 @media (max-width: 768px) {
-  .footer {
-    padding: 36px 0 24px;
+  .inner {
+    padding: 44px 20px 0;
   }
 
-  /* ── Top grid: remove gap so sections use their own padding/dividers */
   .topGrid {
-    gap: 0;
-    padding-bottom: 0;
-    border-bottom: none;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    padding-bottom: 32px;
   }
 
-  /* Divider between each section inside topGrid */
-  .topGrid > div:not(:first-child) {
-    border-top: 1px solid #ececec;
-    padding-top: 4px;
-  }
-
-  /* ── Brand column ───────────────────────────────────────────── */
-  .brandColumn {
-    max-width: 100%;
-    padding-bottom: 28px;
-    border-bottom: 1px solid #ececec;
-    margin-bottom: 4px;
+  .brandColumn,
+  .contactColumn {
+    grid-column: span 2;
   }
 
   .logo {
-    width: 180px;
-    margin-left: -14px;
-    margin-bottom: -20px;
-  }
-
-  .tagline {
-    font-size: 22px;
-    margin-top: 14px;
-    white-space: normal;
+    width: 160px;
   }
 
   .description {
-    font-size: 14px;
+    font-size: 13.5px;
     margin-top: 14px;
   }
 
-  .googleBox {
-    margin-top: 24px;
-    padding: 14px;
-    background: #fff;
-    border: 1px solid #ececec;
-    border-radius: 14px;
-  }
-
-  .googleIcon {
-    width: 44px;
-    height: 44px;
-    font-size: 22px;
-  }
-
-  .rating {
-    font-size: 20px;
-    gap: 8px;
-  }
-
-  /* ── Section headings ───────────────────────────────────────── */
   .heading {
-    font-size: 18px;
-    margin-top: 28px;
-    margin-bottom: 20px;
+    font-size: 13px;
+    margin-bottom: 16px;
   }
 
-  /* ── Quick links: 2-column grid ─────────────────────────────── */
-  .topGrid > div:nth-child(2) .list {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px 8px;
-  }
-
-  /* ── Destinations: 2-column grid ────────────────────────────── */
-  .topGrid > div:nth-child(3) .list {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px 8px;
-  }
-
-  /* ── Services: 2-column grid ─────────────────────────────────── */
-  .topGrid > div:nth-child(4) .list {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px 8px;
-  }
-
-  .list li {
-    gap: 8px;
-    font-size: 14px;
-  }
-
-  /* ── Contact ────────────────────────────────────────────────── */
-  .contactItem {
+  .list {
     gap: 12px;
-    margin-bottom: 20px;
   }
 
-  /* ── Stats: 2×2 card grid ───────────────────────────────────── */
-  .statsSection {
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    padding: 20px;
-    margin: 20px 0;
-    border-radius: 16px;
+  .list a {
+    font-size: 13.5px;
   }
 
-  .statCard {
-    border-right: none !important;
-    padding: 14px 10px;
+  .bottomBar {
     flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-    background: #fff;
-    border: 1px solid #ececec;
-    border-radius: 12px;
+    gap: 16px;
+    padding: 22px 0;
   }
 
-  .statIcon {
-    width: 52px;
-    height: 52px;
-  }
-
-  .statCard h3 {
-    font-size: 24px;
-  }
-
-  .statCard p {
-    font-size: 12px;
-    line-height: 1.5;
-  }
-
-  /* ── Bottom grid: stack vertically with dividers ─────────────── */
-  .bottomGrid {
-    grid-template-columns: 1fr;
-    gap: 0;
-    padding: 0;
-    border-bottom: none;
-  }
-
-  .bottomGrid > div {
-    padding: 20px 0;
-    border-top: 1px solid #ececec;
-  }
-
-  .smallText {
-    font-size: 14px;
-  }
-
-  /* ── Subscribe box: full width ───────────────────────────────── */
-  .subscribeBox {
-    max-width: 100%;
-    margin-top: 16px;
-  }
-
-  .subscribeBox input {
-    height: 48px;
-    font-size: 14px;
-    padding: 0 12px;
-  }
-
-  .subscribeBox button {
-    width: 100px;
-    font-size: 14px;
-  }
-
-  /* ── Socials ─────────────────────────────────────────────────── */
-  .socials {
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-
-  .socials a {
-    width: 40px;
-    height: 40px;
-  }
-
-  /* ── Affiliations: 2×2 grid ─────────────────────────────────── */
   .affiliations {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    justify-items: center;
-    flex-wrap: unset;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px;
   }
 
   .affiliations img {
-    width: 100%;
-    max-width: 140px;
-    height: 44px;
-  }
-
-  /* ── Copyright: centered stack ───────────────────────────────── */
-  .copyright {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 12px;
-    padding-top: 20px;
-    border-top: 1px solid #ececec;
-    margin-top: 8px;
-    flex-wrap: wrap;
-  }
-
-  .bottomLogo {
-    width: 140px;
-  }
-
-  .copyrightText {
-    white-space: normal;
-    font-size: 12px;
+    width: 64px;
+    height: 26px;
   }
 
   .legalLinks {
-    flex-wrap: wrap;
     justify-content: center;
-    gap: 8px 14px;
-    white-space: normal;
+    gap: 10px 16px;
   }
 
   .legalLinks a {
     font-size: 12px;
   }
+}
 
-  /* Remove pseudo | separators on mobile (they break when links wrap) */
-  .legalLinks a:not(:last-child)::after {
-    display: none;
+@media (max-width: 480px) {
+  .topGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .brandColumn,
+  .contactColumn {
+    grid-column: span 1;
   }
 }

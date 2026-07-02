@@ -3,19 +3,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import {
-  ChevronRight,
-  Globe,
+  ArrowUpRight,
   Phone,
   Mail,
   MapPin,
-  GraduationCap,
-  FileText,
-  BookOpen,
-  Wallet,
-  Building2,
-  UserCheck,
-  Headphones,
-  MessageCircle,
   Star,
 } from "lucide-react";
 
@@ -49,278 +40,137 @@ const destinations = [
 ];
 
 const services = [
-  {
-    icon: UserCheck,
-    label: "Profile Evaluation",
-  },
-  {
-    icon: Building2,
-    label: "University Shortlisting",
-  },
-  {
-    icon: FileText,
-    label: "SOP & LOR Guidance",
-  },
-  {
-    icon: GraduationCap,
-    label: "Visa Filing",
-  },
-  {
-    icon: BookOpen,
-    label: "IELTS & PTE Training",
-  },
-  {
-    icon: Wallet,
-    label: "Loan Assistance",
-  },
-];
-
-const stats = [
-  {
-    icon: GraduationCap,
-    value: "25,000+",
-    label: "Happy Students Globally",
-  },
-  {
-    icon: Building2,
-    value: "500+",
-    label: "Top Universities Worldwide",
-  },
-  {
-    icon: Globe,
-    value: "98%",
-    label: "Visa Success Rate",
-  },
-  {
-    icon: Headphones,
-    value: "24/7",
-    label: "Dedicated Student Support",
-  },
+  "Profile Evaluation",
+  "University Shortlisting",
+  "SOP & LOR Guidance",
+  "Visa Filing",
+  "IELTS & PTE Training",
+  "Loan Assistance",
 ];
 
 export default function Footer() {
   return (
     <footer className={styles.footer}>
-      <div className="container">
+      <div className={styles.inner}>
+        {/* ── TOP: BRAND + LINK GRID ─────────────────────────── */}
         <div className={styles.topGrid}>
-          {/* LEFT */}
+          {/* BRAND */}
           <div className={styles.brandColumn}>
             <Image src={logo} alt="GoAbroadly" className={styles.logo} priority />
 
-            <h3 className={styles.tagline}>
-  <span className={styles.taglineBlue}>Study Abroad,</span>{" "}
-  <span className={styles.taglineRed}>Simplified.</span>
-</h3>
-
             <p className={styles.description}>
-              We help students achieve their global education dreams by providing
-              end-to-end support for admissions, visas, and beyond.
+              End-to-end support for admissions, visas, and everything in
+              between — helping 25,000+ students reach top universities
+              worldwide.
             </p>
 
             <div className={styles.googleBox}>
               <div className={styles.googleIcon}>G</div>
-
               <div>
                 <div className={styles.rating}>
-                  4.9/5
+                  4.9
                   <span>
-                    <Star size={16} fill="#FDBA12" />
-                    <Star size={16} fill="#FDBA12" />
-                    <Star size={16} fill="#FDBA12" />
-                    <Star size={16} fill="#FDBA12" />
-                    <Star size={16} fill="#FDBA12" />
+                    <Star size={12} fill="#F59E0B" />
+                    <Star size={12} fill="#F59E0B" />
+                    <Star size={12} fill="#F59E0B" />
+                    <Star size={12} fill="#F59E0B" />
+                    <Star size={12} fill="#F59E0B" />
                   </span>
                 </div>
-
-                <p>From 2,000+ Happy Students</p>
+                <p>2,000+ Google Reviews</p>
               </div>
+            </div>
+
+            <div className={styles.socials}>
+              <a href="#" aria-label="Facebook"><FaFacebookF size={14} /></a>
+              <a href="#" aria-label="Instagram"><FaInstagram size={14} /></a>
+              <a href="#" aria-label="YouTube"><FaYoutube size={14} /></a>
+              <a href="#" aria-label="LinkedIn"><FaLinkedinIn size={14} /></a>
             </div>
           </div>
 
           {/* QUICK LINKS */}
-          <div>
+          <div className={styles.linkColumn}>
             <h4 className={styles.heading}>Quick Links</h4>
-
             <ul className={styles.list}>
               {quickLinks.map((item) => (
-                <li key={item}>
-                  <ChevronRight size={14} />
-                  <Link href="/">{item}</Link>
-                </li>
+                <li key={item}><Link href="/">{item}</Link></li>
               ))}
             </ul>
           </div>
 
           {/* DESTINATIONS */}
-          <div>
-            <h4 className={styles.heading}>Popular Destinations</h4>
-
+          <div className={styles.linkColumn}>
+            <h4 className={styles.heading}>Destinations</h4>
             <ul className={styles.list}>
               {destinations.map((item) => (
-                <li key={item}>
-                  <Globe size={14} />
-                  <Link href="/">{item}</Link>
-                </li>
+                <li key={item}><Link href="/">{item}</Link></li>
               ))}
             </ul>
           </div>
 
           {/* SERVICES */}
-          <div>
+          <div className={styles.linkColumn}>
             <h4 className={styles.heading}>Our Services</h4>
-
             <ul className={styles.list}>
-              {services.map((item) => {
-                const Icon = item.icon;
-
-                return (
-                  <li key={item.label}>
-                    <Icon size={15} />
-                    <Link href="/">{item.label}</Link>
-                  </li>
-                );
-              })}
+              {services.map((item) => (
+                <li key={item}><Link href="/">{item}</Link></li>
+              ))}
             </ul>
           </div>
 
-          {/* CONTACT */}
-          <div>
+          {/* CONTACT / NEWSLETTER */}
+          <div className={styles.contactColumn}>
             <h4 className={styles.heading}>Get in Touch</h4>
 
             <div className={styles.contactItem}>
-              <Phone size={18} />
-              <div>
-                <strong>+91 63543 94156</strong>
-                <span>Mon - Sat | 10AM - 7PM</span>
-              </div>
+              <Phone size={15} />
+              <span>+91 63543 94156</span>
             </div>
 
             <div className={styles.contactItem}>
-              <Mail size={18} />
-              <div>
-                <strong>saurabh@goabroadly.in</strong>
-                <span>We reply within 24 hours</span>
-              </div>
+              <Mail size={15} />
+              <span>saurabh@goabroadly.in</span>
             </div>
 
             <div className={styles.contactItem}>
-              <MapPin size={18} />
-              <div>
-                <strong>
-                  304, Shilp Epitome,
-                  <br />
-                  Sindhubhavan Road,
-                  <br />
-                  Bodakdev, Ahmedabad - 380059
-                </strong>
-              </div>
+              <MapPin size={15} />
+              <span>
+                304, Shilp Epitome, Sindhubhavan Road, Bodakdev,
+                Ahmedabad - 380059
+              </span>
             </div>
 
-            <div className={styles.contactItem}>
-              <Globe size={18} />
-              <div>
-                <strong>www.goabroadly.in</strong>
-              </div>
+            <p className={styles.newsletterLabel}>Subscribe for updates</p>
+            <div className={styles.subscribeBox}>
+              <input placeholder="Your email address" />
+              <button aria-label="Subscribe">
+                <ArrowUpRight size={16} />
+              </button>
             </div>
           </div>
         </div>
-        {/* STATS */}
-        <div className={styles.statsSection}>
-          {stats.map((item) => {
-            const Icon = item.icon;
 
-            return (
-              <div key={item.label} className={styles.statCard}>
-                <div className={styles.statIcon}>
-                  <Icon size={28} />
-                </div>
+        {/* ── BOTTOM BAR ──────────────────────────────────────── */}
+        <div className={styles.bottomBar}>
+          <span className={styles.copyrightText}>
+            © 2024 GoAbroadly.in — All Rights Reserved.
+          </span>
 
-                <div>
-                  <h3>{item.value}</h3>
-                  <p>{item.label}</p>
-                </div>
-              </div>
-            );
-          })}
+          <div className={styles.affiliations}>
+            <img src="https://picsum.photos/160/70?1" alt="" />
+            <img src="https://picsum.photos/160/70?2" alt="" />
+            <img src="https://picsum.photos/160/70?3" alt="" />
+            <img src="https://picsum.photos/160/70?4" alt="" />
+          </div>
+
+          <div className={styles.legalLinks}>
+            <Link href="/">Privacy Policy</Link>
+            <Link href="/">Terms & Conditions</Link>
+            <Link href="/">Refund Policy</Link>
+            <Link href="/">Disclaimer</Link>
+          </div>
         </div>
-
-        {/* BOTTOM */}
-      {/* BOTTOM */}
-<div className={styles.bottomGrid}>
-  {/* Stay Updated */}
-  <div>
-    <h4 className={styles.heading}>Stay Updated</h4>
-
-    <p className={styles.smallText}>
-      Subscribe to our newsletter for the latest updates, tips, and
-      opportunities.
-    </p>
-
-    <div className={styles.subscribeBox}>
-      <input placeholder="Enter your email address" />
-      <button>Subscribe</button>
-    </div>
-  </div>
-
-  {/* Follow Us */}
-  <div>
-    <h4 className={styles.heading}>Follow Us</h4>
-
-    <div className={styles.socials}>
-      <a href="#">
-        <FaFacebookF size={18} />
-      </a>
-
-      <a href="#">
-        <FaInstagram size={18} />
-      </a>
-
-      <a href="#">
-        <FaYoutube size={18} />
-      </a>
-
-      <a href="#">
-        <FaLinkedinIn size={18} />
-      </a>
-
-      <a href="#">
-        <MessageCircle size={18} />
-      </a>
-    </div>
-  </div>
-
-  {/* Affiliations */}
-  <div>
-    <h4 className={styles.heading}>Our Affiliations</h4>
-
-    <div className={styles.affiliations}>
-      <img src="https://picsum.photos/160/70?1" alt="" />
-      <img src="https://picsum.photos/160/70?2" alt="" />
-      <img src="https://picsum.photos/160/70?3" alt="" />
-      <img src="https://picsum.photos/160/70?4" alt="" />
-    </div>
-  </div>
-</div>
-
-{/* COPYRIGHT */}
-<div className={styles.copyright}>
-  <Image
-    src={logo}
-    alt="GoAbroadly"
-    className={styles.bottomLogo}
-  />
-
-  <span className={styles.copyrightText}>
-    © 2024 GoAbroadly.in | All Rights Reserved.
-  </span>
-
-  <div className={styles.legalLinks}>
-    <Link href="/">Privacy Policy</Link>
-    <Link href="/">Terms & Conditions</Link>
-    <Link href="/">Refund Policy</Link>
-    <Link href="/">Disclaimer</Link>
-  </div>
-</div>
       </div>
     </footer>
   );

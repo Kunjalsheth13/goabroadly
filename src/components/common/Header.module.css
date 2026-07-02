@@ -34,13 +34,17 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 24px;
+  gap: 20px;
   width: 100%;
+  min-width: 0;
 }
 
 @media (min-width: 1024px) {
   .mainInner {
-margin-left: 85px;
+    margin-left: 0;
+    padding: 0 24px;
+    max-width: 1440px;
+    margin-inline: auto;
   }
 }
 
@@ -67,15 +71,16 @@ margin-left: 85px;
 .nav {
   display: none;
   align-items: center;
-  gap: 4px;
-  flex: 1;
-  justify-content: flex-start;
-  padding-left: 24px;
+  gap: 2px;
+  flex: 1 1 auto;
+  justify-content: center;
+  min-width: 0;
+  padding-left: 12px;
 }
 
 .navLink {
   position: relative;
-  padding: 10px 14px;
+  padding: 10px 10px;
   font-size: 14px;
   font-weight: 500;
   color: #1e293b;
@@ -144,7 +149,7 @@ margin-left: 85px;
 
 .headerCta {
   height: 48px;
-  padding: 0 28px;
+  padding: 0 22px;
   border-radius: 14px;
   background: #0b2b66;
   color: white;
@@ -286,9 +291,13 @@ margin-left: 85px;
 }
 
 @media (max-width: 1024px) {
-  .headerCta,
-  .phoneLink {
+  .nav,
+  .headerRight {
     display: none;
+  }
+
+  .menuBtn {
+    display: flex;
   }
 
   .logoImage {
@@ -307,5 +316,24 @@ margin-left: 85px;
 
   .logoImage {
     width: 170px;
+  }
+}
+@media (max-width: 1360px) {
+  .phoneLink {
+    display: none;
+  }
+
+  .headerCta {
+    padding: 0 18px;
+    font-size: 13px;
+  }
+
+  .navLink {
+    padding: 10px 8px;
+    font-size: 13px;
+  }
+
+  .logoImage {
+    width: 220px;
   }
 }

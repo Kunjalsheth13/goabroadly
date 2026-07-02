@@ -181,7 +181,7 @@ export default function EligibilityChecker() {
           </div>
 
           {/* STATS */}
-          <div className={styles.stats}>
+          {/* <div className={styles.stats}>
             <div className={styles.stat}>
               <Users size={34} />
               <div>
@@ -213,7 +213,7 @@ export default function EligibilityChecker() {
                 <p>Expert Assistance</p>
               </div>
             </div>
-          </div>
+          </div> */}
         </FadeIn>
       </div>
     </section>

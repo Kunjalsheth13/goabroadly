@@ -127,7 +127,7 @@ export default function DestinationsSection() {
           ))}
         </Swiper>
 
-       <div className={styles.stats}>
+       {/* <div className={styles.stats}>
   <div className={styles.statItem}>
     <div
       className={styles.icon}
@@ -197,7 +197,7 @@ export default function DestinationsSection() {
       <span>Years of Experience</span>
     </div>
   </div>
-</div>
+</div> */}
       </div>
     </section>
   );
