@@ -41,7 +41,7 @@ export default function ServicePageTemplate({ data }: Props) {
 /* --------------------------------- HERO --------------------------------- */
 
 .svc-hero {
-  padding: 40px 0 0;
+  padding: 0 0 0;
   position: relative;
   overflow: hidden;
   margin-bottom: -70px;
@@ -68,6 +68,7 @@ export default function ServicePageTemplate({ data }: Props) {
   grid-template-columns: 1fr 1.2fr;
   align-items: center;
   gap: 40px;
+ 
 }
 
 .svc-left {
