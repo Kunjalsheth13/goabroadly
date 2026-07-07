@@ -20,11 +20,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: data.title,
     description: data.heroSubtitle,
-    openGraph: {
-      title: `${data.title} | ${siteConfig.name}`,
-      description: data.heroSubtitle,
-      images: [{ url: data.heroImage }],
+   openGraph: {
+  title: `${data.title} | ${siteConfig.name}`,
+  description: data.heroSubtitle,
+  images: [
+    {
+      url:
+        typeof data.heroImage === "string"
+          ? data.heroImage
+          : data.heroImage.src,
     },
+  ],
+},
   };
 }
 
