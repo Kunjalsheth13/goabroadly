@@ -100,13 +100,18 @@ export default function MegaMenu({
       onMouseEnter={handleEnter}
       onMouseLeave={handleLeave}
     >
-      <Link href={menu.href} className={`${styles.trigger} ${isOpen ? styles.triggerActive : ""}`}>
-        {menu.label}
-        <ChevronDown
-          size={14}
-          className={`${styles.chevron} ${isOpen ? styles.chevronOpen : ""}`}
-        />
-      </Link>
+     <button
+  type="button"
+  className={`${styles.trigger} ${isOpen ? styles.triggerActive : ""}`}
+  onMouseEnter={handleEnter}
+>
+  {menu.label}
+
+  <ChevronDown
+    size={14}
+    className={`${styles.chevron} ${isOpen ? styles.chevronOpen : ""}`}
+  />
+</button>
 
       <AnimatePresence>
         {isOpen && (
