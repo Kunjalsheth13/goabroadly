@@ -121,10 +121,11 @@ export default function ServicesGrid() {
 
                   <h3>{service.title}</h3>
 
-                  <p>
-                    {service.overview.slice(0, 120)}
-                    ...
-                  </p>
+                 <p>
+  {service.overview.length > 120
+    ? `${service.overview.slice(0, 120)}...`
+    : service.overview}
+</p>
 
                   <Link
                     href={`/services/${service.slug}`}

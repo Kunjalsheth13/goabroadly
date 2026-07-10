@@ -7,7 +7,7 @@ import FadeIn from "@/components/animations/FadeIn";
 import Button from "@/components/common/Button";
 import FAQSection from "@/components/home/FAQSection";
 import CTASection from "@/components/home/CTASection";
-import { type ServicePageData, whyChooseCards } from "@/constants/services-data";
+import { type ServicePageData } from "@/constants/services-data";
 import { FaPlane } from "react-icons/fa6";
 import benefit1 from "@/assets/images/services/benefit1.png";
 import benefit2 from "@/assets/images/services/benefit2.png";
@@ -15,10 +15,29 @@ import benefit3 from "@/assets/images/services/benefit3.png";
 import benefit4 from "@/assets/images/services/benefit4.png";
 import benefit5 from "@/assets/images/services/benefit5.png";
 import benefit6 from "@/assets/images/services/benefit6.png";
+
+import whyIcon1 from "@/assets/images/services/whyicon1.png";
+import whyIcon2 from "@/assets/images/services/whyicon2.png";
+import whyIcon3 from "@/assets/images/services/whyicon3.png";
+import whyIcon4 from "@/assets/images/services/whyicon4.png";
+import whyIcon5 from "@/assets/images/services/whyicon5.png";
+import whyIcon6 from "@/assets/images/services/whyicon6.png";
 type Props = { data: ServicePageData };
 
 export default function ServicePageTemplate({ data }: Props) {
-  const faqs = data.faqs.map((f) => ({ question: f.question, answer: f.answer }));
+const faqs = data.faqs.map((f) => ({
+  question: f.question,
+  answer: f.answer,
+}));
+
+const whyIcons = [
+  whyIcon1,
+  whyIcon2,
+  whyIcon3,
+  whyIcon4,
+  whyIcon5,
+  whyIcon6,
+];
 
   return (
     <>
@@ -113,6 +132,9 @@ export default function ServicePageTemplate({ data }: Props) {
   flex-wrap: wrap;
 }
 
+.svc-buttons-mobile {
+  display: none;
+}
 .svc-right {
   display: flex;
   justify-content: flex-end;
@@ -158,27 +180,51 @@ export default function ServicePageTemplate({ data }: Props) {
     padding: 24px 0 0;
     margin-bottom: -28px;
   }
+
   .svc-hero-container {
     gap: 20px;
   }
+
   .svc-badge {
     padding: 6px 14px;
     font-size: 12px;
     margin-bottom: 16px;
   }
+
   .svc-subtitle {
     margin-bottom: 24px;
   }
+
+  .svc-image-wrapper {
+    height: 300px;
+  }
+
   .svc-buttons {
     width: 100%;
     flex-direction: column;
     gap: 12px;
   }
-  .svc-image-wrapper {
-    height: 300px;
+
+  /* Hide desktop buttons on mobile */
+  .svc-buttons-desktop {
+    display: none;
+  }
+
+  /* Show buttons below image */
+  .svc-buttons-mobile {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 20px;
+  }
+
+  .svc-right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 }
-
 /* ------------------------------ OVERVIEW -------------------------------- */
 
 .svc-overview-card {
@@ -888,44 +934,64 @@ export default function ServicePageTemplate({ data }: Props) {
       >
         <div className="container" style={{ position: "relative", zIndex: 2 }}>
           <div className="svc-hero-container">
-            <FadeIn>
-              <div className="svc-left">
-                <span className="svc-badge">{data.heroBadge}</span>
+         <FadeIn>
+  <div className="svc-left">
+    <span className="svc-badge">{data.heroBadge}</span>
 
-                <h1 className="svc-title">{data.title}</h1>
+    <h1 className="svc-title">{data.title}</h1>
 
-                <p className="svc-subtitle">{data.heroSubtitle}</p>
+    <p className="svc-subtitle">{data.heroSubtitle}</p>
 
-                <div className="svc-buttons">
-                  <Button href={data.heroPrimaryLink} size="lg">
-                    {data.heroPrimaryButton}
-                  </Button>
+    {/* Desktop & Tablet Buttons */}
+    <div className="svc-buttons svc-buttons-desktop">
+      <Button href={data.heroPrimaryLink} size="lg">
+        {data.heroPrimaryButton}
+      </Button>
 
-                  <Button href={data.heroSecondaryLink} variant="outline" size="lg">
-                    {data.heroSecondaryButton}
-                  </Button>
-                </div>
-              </div>
-            </FadeIn>
+      <Button
+        href={data.heroSecondaryLink}
+        variant="outline"
+        size="lg"
+      >
+        {data.heroSecondaryButton}
+      </Button>
+    </div>
+  </div>
+</FadeIn>
 
-            <FadeIn>
-              <div className="svc-right">
-                <div className="svc-image-wrapper">
-                 <Image
-  src={data.heroImage}
-  alt={data.title}
-  fill
-  priority
-  sizes="(max-width:768px) 100vw, 50vw"
-  style={{
-    objectFit: "contain",
-    objectPosition: "center",
-    transform: "scale(1.08)",
-  }}
-/>
-                </div>
-              </div>
-            </FadeIn>
+     <FadeIn>
+  <div className="svc-right">
+    <div className="svc-image-wrapper">
+      <Image
+        src={data.heroImage}
+        alt={data.title}
+        fill
+        priority
+        sizes="(max-width:768px) 100vw, 50vw"
+        style={{
+          objectFit: "contain",
+          objectPosition: "center",
+          transform: "scale(1.08)",
+        }}
+      />
+    </div>
+
+    {/* Mobile Buttons */}
+    <div className="svc-buttons svc-buttons-mobile">
+      <Button href={data.heroPrimaryLink} size="lg">
+        {data.heroPrimaryButton}
+      </Button>
+
+      <Button
+        href={data.heroSecondaryLink}
+        variant="outline"
+        size="lg"
+      >
+        {data.heroSecondaryButton}
+      </Button>
+    </div>
+  </div>
+</FadeIn>
           </div>
         </div>
       </section>
@@ -975,11 +1041,11 @@ export default function ServicePageTemplate({ data }: Props) {
   ];
 
   return (
-                <div key={benefit} className="svc-benefit-card">
+                <div key={benefit.title} className="svc-benefit-card">
                  <div className="svc-benefit-icon">
   <Image
     src={benefitIcons[index]}
-    alt={benefit}
+   alt={benefit.title}
     width={52}
     height={52}
     style={{
@@ -989,11 +1055,13 @@ export default function ServicePageTemplate({ data }: Props) {
     }}
   />
 </div>
-                  <h3 className="svc-benefit-title">{benefit}</h3>
+                  <h3 className="svc-benefit-title">
+  {benefit.title}
+</h3>
 
-                  <p className="svc-benefit-description">
-                    Description for {benefit}. Replace with your own content later.
-                  </p>
+                 <p className="svc-benefit-description">
+  {benefit.description}
+</p>
 
                   <div
                     className={`svc-benefit-card-accent ${
@@ -1094,11 +1162,11 @@ export default function ServicePageTemplate({ data }: Props) {
             </div>
 
             <div className="svc-why-grid">
-              {whyChooseCards.map((item, index) => (
+              {data.whyChooseUs.map((item, index) => (
                 <div key={index} className="svc-why-card">
                   <div className="svc-why-icon-circle">
                     <Image
-                      src={item.icon}
+                     src={whyIcons[index]}
                       alt={item.title}
                       width={64}
                       height={64}
