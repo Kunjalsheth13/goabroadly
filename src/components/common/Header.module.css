@@ -88,7 +88,23 @@
   transition: all 0.25s ease;
   white-space: nowrap;
 }
+.navButton {
+  position: relative;
+  padding: 10px 10px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #1e293b;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: all .25s ease;
+  white-space: nowrap;
+}
 
+.navButton:hover {
+  color: #0b2b66;
+}
 .navLink:hover {
   color: #0b2b66;
 }

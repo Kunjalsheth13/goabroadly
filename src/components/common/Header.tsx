@@ -108,39 +108,47 @@ export default function Header() {
           </Link>
 
           <nav className={styles.nav} aria-label="Main navigation">
-            <Link
-              href="/"
-              className={`${styles.navLink} ${pathname === "/" ? styles.active : ""}`}
-            >
-              Home
-            </Link>
-            <Link
-              href="/about"
-              className={`${styles.navLink} ${pathname === "/about" ? styles.active : ""}`}
-            >
-              About
-            </Link>
-            {megaMenus.map((menu) => (
-              <MegaMenu
-                key={menu.label}
-                menu={menu}
-                isOpen={openMenu === menu.label}
-                onOpen={() => setOpenMenu(menu.label)}
-                onClose={() => setOpenMenu(null)}
-              />
-            ))}
-            <Link
-              href="/blog"
-              className={`${styles.navLink} ${pathname === "/blog" ? styles.active : ""}`}
-            >
-              Blog
-            </Link>
-            <Link
-              href="/contact"
-              className={`${styles.navLink} ${pathname === "/contact" ? styles.active : ""}`}
-            >
-              Contact
-            </Link>
+          <button
+  type="button"
+  className={styles.navButton}
+  onMouseEnter={() => setOpenMenu("Home")}
+>
+  Home
+</button>
+
+<button
+  type="button"
+  className={styles.navButton}
+  onMouseEnter={() => setOpenMenu("About")}
+>
+  About
+</button>
+
+{megaMenus.map((menu) => (
+  <MegaMenu
+    key={menu.label}
+    menu={menu}
+    isOpen={openMenu === menu.label}
+    onOpen={() => setOpenMenu(menu.label)}
+    onClose={() => setOpenMenu(null)}
+  />
+))}
+
+<button
+  type="button"
+  className={styles.navButton}
+  onMouseEnter={() => setOpenMenu("Blog")}
+>
+  Blog
+</button>
+
+<button
+  type="button"
+  className={styles.navButton}
+  onMouseEnter={() => setOpenMenu("Contact")}
+>
+  Contact
+</button>
           </nav>
           <div className={styles.headerRight}>
             <a

@@ -17,7 +17,7 @@ import interviewpreparation from "@/assets/images/services/interviewprep.png";
 import visafiling from "@/assets/images/services/visafill.png";
 import documentverification from "@/assets/images/services/documentverify.png";
 import scholarshipguide from "@/assets/images/services/scholarshipguid.png";
-import educationloan from "@/assets/images/services/edulaon.png";
+import educationloan from "@/assets/images/services/eduloan.png";
 import whyIcon1 from "@/assets/images/services/whyicon1.png";
 import whyIcon2 from "@/assets/images/services/whyicon2.png";
 import whyIcon3 from "@/assets/images/services/whyicon3.png";
