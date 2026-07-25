@@ -116,13 +116,13 @@ export default function Header() {
   Home
 </button>
 
-<button
+{/* <button
   type="button"
   className={styles.navButton}
   onMouseEnter={() => setOpenMenu("About")}
 >
   About
-</button>
+</button> */}
 
 {megaMenus.map((menu) => (
   <MegaMenu

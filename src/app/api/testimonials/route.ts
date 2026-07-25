@@ -17,25 +17,16 @@ const testimonialSchema = z.object({
   published: z.boolean().optional(),
   sortOrder: z.number().int().optional(),
 });
-
 export async function GET(request: Request) {
   try {
-    const { searchParams } = new URL(request.url);
-    const session = await getServerSession(authOptions);
-
-    if (session?.user?.id) {
-      const testimonials = await getAllTestimonialsAdmin();
-      return NextResponse.json(testimonials);
-    }
-
-    const testimonials = await getPublishedTestimonials();
+    // Hali mate testing mate direct badha testimonials return karavo jethi khabar pade
+    const testimonials = await getAllTestimonialsAdmin();
     return NextResponse.json(testimonials);
   } catch (error) {
     console.error("Testimonials GET error:", error);
     return NextResponse.json([]);
   }
 }
-
 export async function POST(request: Request) {
   try {
     const session = await getServerSession(authOptions);

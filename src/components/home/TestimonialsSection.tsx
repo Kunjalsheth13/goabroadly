@@ -30,15 +30,18 @@ type TestimonialItem = {
 export default function TestimonialsSection() {
   const [items, setItems] = useState<TestimonialItem[]>([]);
 
-  useEffect(() => {
+ useEffect(() => {
     fetch("/api/testimonials")
       .then((r) => r.json())
       .then((data) => {
+        console.log("API Data:", data); // Console ma check karva mate
         if (Array.isArray(data)) {
-          setItems(data);
+          // Fkat published items filter karva mate (jo API ma filter na hoy to)
+          const publishedItems = data.filter((item: any) => item.published !== false);
+          setItems(publishedItems.length > 0 ? publishedItems : data);
         }
       })
-      .catch(() => {});
+      .catch((err) => console.error("Error fetching testimonials:", err));
   }, []);
 
   useEffect(() => {
@@ -98,9 +101,8 @@ export default function TestimonialsSection() {
               {/* <div className={styles.stars}>★★★★★</div> */}
 
               {/* <Quote className={styles.quoteIcon} /> */}
-
-              <p className={styles.text}>
-                {item.testimonial || item.quote}
+<p className={styles.text}>
+                {item.testimonial || item.quote || "No review content provided."}
               </p>
 
               <div className={styles.user}>
