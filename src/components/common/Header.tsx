@@ -108,14 +108,13 @@ export default function Header() {
           </Link>
 
           <nav className={styles.nav} aria-label="Main navigation">
-          <button
-  type="button"
+       <Link
+  href="/"
   className={styles.navButton}
-  onMouseEnter={() => setOpenMenu("Home")}
+  style={{ display: "inline-block", textDecoration: "none" }}
 >
   Home
-</button>
-
+</Link>
 {/* <button
   type="button"
   className={styles.navButton}
@@ -133,22 +132,21 @@ export default function Header() {
     onClose={() => setOpenMenu(null)}
   />
 ))}
-
-<button
-  type="button"
+<Link
+  href="/blog"
   className={styles.navButton}
-  onMouseEnter={() => setOpenMenu("Blog")}
+  style={{ display: "inline-block", textDecoration: "none" }}
 >
   Blog
-</button>
+</Link>
 
-<button
-  type="button"
+<Link
+  href="/contact"
   className={styles.navButton}
-  onMouseEnter={() => setOpenMenu("Contact")}
+  style={{ display: "inline-block", textDecoration: "none" }}
 >
   Contact
-</button>
+</Link>
           </nav>
           <div className={styles.headerRight}>
             <a
