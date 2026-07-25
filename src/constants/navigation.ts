@@ -201,6 +201,6 @@ export const studyAbroadMenu: NavMenuConfig = {
     },
   ],
 };
-export const megaMenus = [servicesMenu, visaTypesMenu, countriesMenu, studyAbroadMenu] as const;
+export const megaMenus = [servicesMenu, visaTypesMenu, countriesMenu] as const;
 
 export const simpleNavLinks: SimpleNavLink[] = [];
