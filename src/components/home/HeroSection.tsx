@@ -621,7 +621,6 @@ const styles: Record<string, any> = {
     paddingTop: "40px",
     paddingBottom: "140px",
   },
-  // No className="container" on mobile — full manual control
   containerMobile: {
     position: "relative",
     zIndex: 2,
@@ -630,7 +629,7 @@ const styles: Record<string, any> = {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    paddingTop: "100px",
+    paddingTop: "40px",
     paddingBottom: "32px",
     paddingLeft: "20px",
     paddingRight: "20px",
