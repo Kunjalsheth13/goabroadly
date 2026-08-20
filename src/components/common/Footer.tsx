@@ -17,35 +17,35 @@ import logo from "@/assets/images/logo.png";
 import styles from "./Footer.module.css";
 
 const quickLinks = [
-  "Home",
-  "About Us",
-  "Countries",
-  "Universities",
-  "Courses",
-  "Study Abroad Process",
-  "Student Reviews",
-  "Blog",
-  "Contact Us",
+  { name: "Home", href: "/" },
+  { name: "About Us", href: "/about" },
+  { name: "Countries", href: "/countries" },
+  { name: "Universities", href: "/study-abroad" },
+  { name: "Courses", href: "/study-abroad" },
+  { name: "Study Abroad Process", href: "/study-abroad" },
+  { name: "Student Reviews", href: "/" },
+  { name: "Blog", href: "/blog" },
+  { name: "Contact Us", href: "/contact" },
 ];
 
 const destinations = [
-  "USA",
-  "Canada",
-  "UK",
-  "Australia",
-  "Germany",
-  "New Zealand",
-  "Ireland",
-  "Singapore",
+  { name: "USA", href: "/countries/usa" },
+  { name: "Canada", href: "/countries/canada" },
+  { name: "UK", href: "/countries/uk" },
+  { name: "Australia", href: "/countries/australia" },
+  { name: "Germany", href: "/countries/germany" },
+  { name: "New Zealand", href: "/countries/new-zealand" },
+  { name: "Ireland", href: "/countries/ireland" },
+  { name: "Singapore", href: "/countries/singapore" },
 ];
 
 const services = [
-  "Profile Evaluation",
-  "University Shortlisting",
-  "SOP & LOR Guidance",
-  "Visa Filing",
-  "IELTS & PTE Training",
-  "Loan Assistance",
+  { name: "Profile Evaluation", href: "/services" },
+  { name: "University Shortlisting", href: "/services" },
+  { name: "SOP & LOR Guidance", href: "/services" },
+  { name: "Visa Filing", href: "/visa-types" },
+  { name: "IELTS & PTE Training", href: "/services" },
+  { name: "Loan Assistance", href: "/services" },
 ];
 
 export default function Footer() {
@@ -94,7 +94,7 @@ export default function Footer() {
             <h4 className={styles.heading}>Quick Links</h4>
             <ul className={styles.list}>
               {quickLinks.map((item) => (
-                <li key={item}><Link href="/">{item}</Link></li>
+                <li key={item.name}><Link href={item.href}>{item.name}</Link></li>
               ))}
             </ul>
           </div>
@@ -104,7 +104,7 @@ export default function Footer() {
             <h4 className={styles.heading}>Destinations</h4>
             <ul className={styles.list}>
               {destinations.map((item) => (
-                <li key={item}><Link href="/">{item}</Link></li>
+                <li key={item.name}><Link href={item.href}>{item.name}</Link></li>
               ))}
             </ul>
           </div>
@@ -114,7 +114,7 @@ export default function Footer() {
             <h4 className={styles.heading}>Our Services</h4>
             <ul className={styles.list}>
               {services.map((item) => (
-                <li key={item}><Link href="/">{item}</Link></li>
+                <li key={item.name}><Link href={item.href}>{item.name}</Link></li>
               ))}
             </ul>
           </div>

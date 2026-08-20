@@ -61,23 +61,27 @@ export default function DestinationsSection() {
   loop
   breakpoints={{
     0: {
-      slidesPerView: 1.1,
+      slidesPerView: 1.2,
       spaceBetween: 16,
+      centeredSlides: true,
     },
 
     768: {
       slidesPerView: 2.2,
       spaceBetween: 20,
+      centeredSlides: false,
     },
 
     1024: {
       slidesPerView: 4.5,
       spaceBetween: 20,
+      centeredSlides: false,
     },
 
     1440: {
       slidesPerView: 5.5,
       spaceBetween: 20,
+      centeredSlides: false,
     },
   }}
 >

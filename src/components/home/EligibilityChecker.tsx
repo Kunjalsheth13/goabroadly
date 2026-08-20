@@ -16,6 +16,7 @@ import {
   ScrollText,
 } from "lucide-react";
 
+import { useToast } from "@/components/common/Toast";
 import FadeIn from "@/components/animations/FadeIn";
 import eligibilityBg from "@/assets/images/eligibilitybg.png";
 
@@ -26,6 +27,7 @@ export default function EligibilityChecker() {
   const [ielts, setIelts] = useState("");
   const [offer, setOffer] = useState("");
   const [isMobile, setIsMobile] = useState(false);
+  const { showToast } = useToast();
 
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth <= 768);
@@ -33,6 +35,31 @@ export default function EligibilityChecker() {
     window.addEventListener("resize", check);
     return () => window.removeEventListener("resize", check);
   }, []);
+
+  const handleCheck = () => {
+    if (!qualification || qualification.startsWith("Select")) {
+      showToast("Please select your highest qualification.", "error");
+      return;
+    }
+    if (!ielts || ielts.startsWith("Select")) {
+      showToast("Please select your IELTS band.", "error");
+      return;
+    }
+    if (!offer || offer.startsWith("Do you")) {
+      showToast("Please indicate if you have a university offer.", "error");
+      return;
+    }
+    
+    if (offer === "Yes") {
+      showToast("You are highly eligible! Book a free consultation to proceed.", "success");
+    } else {
+      if (ielts === "6.5" || ielts === "7.0+") {
+        showToast("You have a strong profile. Let's find you a university!", "success");
+      } else {
+        showToast("You are eligible, but we can help improve your chances. Contact us!", "info");
+      }
+    }
+  };
 
   return (
     <section
@@ -168,7 +195,7 @@ export default function EligibilityChecker() {
                 </div>
               </div>
 
-              <button className={styles.checkBtn}>
+              <button className={styles.checkBtn} onClick={handleCheck}>
                 <ShieldCheck size={22} />
                 Check Eligibility
               </button>
